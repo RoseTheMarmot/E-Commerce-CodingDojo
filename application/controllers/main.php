@@ -5,12 +5,18 @@ class Main extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->output->enable_profiler();
+		//$this->output->enable_profiler();
 	}
 
 	public function index()
 	{
-		echo "Welcome to CodeIgniter. The default Controller is Main.php";
+		$this->admin();
+	}
+	
+	public function admin(){
+		$this->load->view('admin-login-view');
+		//admin login here
+		//if login successful, redirect to dashboard
 	}
 }
 
