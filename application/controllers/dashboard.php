@@ -27,7 +27,9 @@ class Dashboard extends CI_Controller {
 
 	public function products(){
 		//admin view of products
-		echo "hi";
+		$this->load->view('dashboard/header-dashboard');
+		$this->load->view('dashboard/nav-dashboard', array('current' => 'products'));
+		$this->load->view('dashboard/products-view');
 	}
 
 	public function logoff(){

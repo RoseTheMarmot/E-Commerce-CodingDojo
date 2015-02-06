@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md-9">
 
-        <!-- orders search form -->
+        <!-- product search form -->
         <form class="navbar-form navbar-left" role="search" method="post" action="">
           <div class="form-group">
             <span class="glyphicon glyphicon-search icon-in-bar" aria-hidden="true"></span>
@@ -16,32 +16,22 @@
 
       </div>
       <div class="col-md-3">
-
-        <!-- filter menu -->
-        <form id="orders-filter-menu" method="post" action="">
-          <select class="form-control" name="filter">
-            <option>Show All</option>
-            <option>Order in</option>
-            <option>Process</option>
-            <option>Shipped</option>
-          </select>
-        </form>
-
+        <a href="/"><button id="add-product-button" class="btn btn-primary">Add new product</button></a>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
 
-        <!-- orders table -->
+        <!-- products table -->
         <table id="orders-table" class="table-bordered">
           <thead>
             <tr>
-              <th>Order ID</th>
+              <th>Picture</th>
+              <th>ID</th>
               <th>Name</th>
-              <th>Date</th>
-              <th>Billing Address</th>
-              <th>Total</th>
-              <th>Status</th>
+              <th>Inventory Count</th>
+              <th>Quantity sold</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -52,7 +42,10 @@
               <td>X</td>
               <td>X</td>
               <td>X</td>
-              <td>X</td>
+              <td>
+                <a href="/">edit</a> 
+                <a href="/">delete</a>
+              </td>
             </tr>
 
           </tbody>

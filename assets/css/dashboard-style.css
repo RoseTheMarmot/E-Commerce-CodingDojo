@@ -78,5 +78,8 @@ form .icon-in-bar{
 	#orders-table tr:nth-child(odd){
 		background-color: #eee;
 	}
-
+#add-product-button{
+	margin-top: 10px;
+	float: right;
+}
 

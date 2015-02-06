@@ -37,7 +37,7 @@
         ?>
       </ul> 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">log off</a></li>
+        <li><a href="/dashboard/logoff">log off</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
