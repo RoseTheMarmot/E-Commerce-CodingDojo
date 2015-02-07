@@ -38,6 +38,7 @@
       <div class="col-md-4 admin-login">
         <h3>Admin Login Page</h3>
         <form method="post" action="/dashboard/admin_login">
+          <?php echo $this->session->flashdata('admin_login_errors'); ?>
           <label>email:</label><input type="text" name="email">
           <label>password:</label><input type="password" name="password">
           <input class="btn btn-primary" type="submit" value="Login">

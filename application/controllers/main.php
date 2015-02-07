@@ -10,13 +10,11 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
-		$this->admin();
+
 	}
 	
 	public function admin(){
 		$this->load->view('admin-login-view');
-		//admin login here
-		//if login successful, redirect to dashboard
 	}
 }
 
