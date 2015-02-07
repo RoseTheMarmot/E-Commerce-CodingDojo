@@ -42,11 +42,17 @@ class Dashboard extends CI_Controller {
 		}		
 	}
 
+	/* ---------------------------
+	 *  Admin view of orders
+	 */
 	public function orders(){
-		//admin view of orders
+		//get orders
+		$this->load->model('dashboard_model');
+		$orders = $this->dashboard_model->get_orders();
+		//load view
 		$this->load->view('dashboard/header-dashboard');
 		$this->load->view('dashboard/nav-dashboard', array('current' => 'orders'));
-		$this->load->view('dashboard/orders-view');
+		$this->load->view('dashboard/orders-view', array('orders' => $orders));
 	}
 
 	public function products(){

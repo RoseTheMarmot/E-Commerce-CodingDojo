@@ -46,14 +46,20 @@
           </thead>
           <tbody>
 
-            <tr>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-            </tr>
+            <?php 
+            if(!empty($orders)){
+              for($i = 0; $i < count($orders); $i++){?>
+                <tr>
+                  <td><?=$orders[$i]['id']?></td>
+                  <td><?=$orders[$i]['first_name']." ".$orders[$i]['last_name']?></td>
+                  <td><?=$orders[$i]['created_at']?></td>
+                  <td><?=$orders[$i]['address']." ".$orders[$i]['address2']." ".$orders[$i]['city'].", ".$orders[$i]['state']?></td>
+                  <td><?="$".$orders[$i]['total']?></td>
+                  <td><?=$orders[$i]['status']?></td>
+                </tr>
+                <?php
+              }
+            }?>
 
           </tbody>
         </table>
