@@ -36,18 +36,23 @@
           </thead>
           <tbody>
 
-            <tr>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-              <td>
-                <a href="/">edit</a> 
-                <a href="/">delete</a>
-              </td>
-            </tr>
-
+            <?php if(!empty($products)){
+              for($i = 0; $i < count($products); $i++){?>
+                <tr>
+                  <td><?="X"?></td>
+                  <td><?=$products[$i]['id']?></td>
+                  <td><?=$products[$i]['name']?></td>
+                  <td><?=$products[$i]['inventory']?></td>
+                  <td><?=$products[$i]['sold']?></td>
+                  <td>
+                    <a href="/dashboard/edit_product/<?=$products[$i]['id']?>">edit</a> 
+                    <a href="/dashboard/delete_product/<?=$products[$i]['id']?>">delete</a>
+                  </td>
+                </tr>
+                <?php
+              }
+            }?>
+            
           </tbody>
         </table>
 

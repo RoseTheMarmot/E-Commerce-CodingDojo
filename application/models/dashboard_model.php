@@ -20,4 +20,13 @@ class Dashboard_model extends CI_Model {
 			Order by orders.id DESC";
 		return $this->db->query($query)->result_array();
 	}
+
+	function get_products(){
+		$query = "SELECT products.id, products.name, products.inventory, Sum(relationships.quantity) as sold
+			FROM products
+			JOIN relationships ON relationships.products_id = products.id
+			GROUP BY products.id
+			ORDER BY products.id ASC";
+		return $this->db->query($query)->result_array();
+	}
 }

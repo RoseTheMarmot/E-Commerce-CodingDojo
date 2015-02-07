@@ -37,6 +37,7 @@ class Dashboard extends CI_Controller {
 			}else{
 				//email and password matches found, login successful
 				$this->session->set_userdata($admin);
+				$this->session->set_userdata('is_admin', true);
 				redirect('/dashboard/orders');
 			}
 		}		
@@ -46,20 +47,35 @@ class Dashboard extends CI_Controller {
 	 *  Admin view of orders
 	 */
 	public function orders(){
-		//get orders
-		$this->load->model('dashboard_model');
-		$orders = $this->dashboard_model->get_orders();
-		//load view
-		$this->load->view('dashboard/header-dashboard');
-		$this->load->view('dashboard/nav-dashboard', array('current' => 'orders'));
-		$this->load->view('dashboard/orders-view', array('orders' => $orders));
+		if($this->session->userdata('is_admin') === true){ //check if admin
+			//get orders
+			$this->load->model('dashboard_model');
+			$orders = $this->dashboard_model->get_orders();
+			//load view
+			$this->load->view('dashboard/header-dashboard');
+			$this->load->view('dashboard/nav-dashboard', array('current' => 'orders'));
+			$this->load->view('dashboard/orders-view', array('orders' => $orders));
+		}else{
+			redirect('/main/admin');
+		}	
 	}
 
+	/* ---------------------------
+	 *  Admin view of products
+	 */
 	public function products(){
-		//admin view of products
-		$this->load->view('dashboard/header-dashboard');
-		$this->load->view('dashboard/nav-dashboard', array('current' => 'products'));
-		$this->load->view('dashboard/products-view');
+		if($this->session->userdata('is_admin') === true){ //check if admin
+			//get products
+			$this->load->model('dashboard_model');
+			$products = $this->dashboard_model->get_products();
+			//load view
+			$this->load->view('dashboard/header-dashboard');
+			$this->load->view('dashboard/nav-dashboard', array('current' => 'products'));
+			$this->load->view('dashboard/products-view', array('products' => $products));
+		}else{
+			redirect('/main/admin');
+		}
+		
 	}
 
 	public function logoff(){
