@@ -1,0 +1,41 @@
+div#header {
+	background-color: black;
+	height: 40px;
+	padding-top: 5px;
+	padding-left: 15px;
+}
+
+#title {
+	font-size: 20px;
+	color: white;
+}
+
+#shop-cart {
+	margin-left: 400px;
+	color: white;
+}
+
+#cart-quantity {
+	margin-left: 400px;
+	color: white;
+}
+
+h5.form-descriptions {
+	text-align: right;
+}
+
+input.form-area {
+	margin-left: 40px;
+}
+
+input.form-area2 {
+	margin-left: 20px;
+	vertical-align: top;
+}
+
+#button2 {
+	margin-left: 245px;
+	background-color: blue;
+	color: white;
+	border: 1px solid black;
+}
