@@ -60,24 +60,27 @@ form .icon-in-bar{
 	top: 18px;
 }
 }
-#orders-table{
+#orders-table, #products-table {
 	border-top: 1px solid #888;
 	border-bottom: 1px solid #888;
 	width: 100%;
 }
-	#orders-table td, #orders-table th{
+	#orders-table td, #orders-table th, #products-table td, #products-table th{
 		border-left: 1px solid #888;
 		border-right: 1px solid #888;
 		border-bottom: none;
 		border-top: none;
 		padding: 5px 10px;
 	}
-	#orders-table th{
+	#orders-table th, #products-table th{
 		background-color: #ddd;
 	}
-	#orders-table tr:nth-child(odd){
+	#orders-table tr:nth-child(odd), #products-table tr:nth-child(odd){
 		background-color: #eee;
 	}
+#orders-filter-form{
+	margin-top: 10px;
+}
 #add-product-button{
 	margin-top: 10px;
 	float: right;

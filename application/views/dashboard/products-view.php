@@ -6,7 +6,7 @@
       <div class="col-md-9">
 
         <!-- product search form -->
-        <form class="navbar-form navbar-left" role="search" method="post" action="">
+        <form id="products-search-form" class="navbar-form navbar-left" role="search" method="post" action="">
           <div class="form-group">
             <span class="glyphicon glyphicon-search icon-in-bar" aria-hidden="true"></span>
             <input type="text" class="form-control search-with-icon" placeholder="Search">
@@ -23,7 +23,7 @@
       <div class="col-md-12">
 
         <!-- products table -->
-        <table id="orders-table" class="table-bordered">
+        <table id="products-table" class="table-bordered">
           <thead>
             <tr>
               <th>Picture</th>
@@ -62,7 +62,7 @@
       <div class="col-md-12 centered">
 
         <!-- pagination -->
-        <nav id="orders-pagination">
+        <nav id="products-pagination">
           <ul class="pagination">
             <li>
               <a href="#" aria-label="Previous">
@@ -90,7 +90,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" src="/assets/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/assets/js/script.js"></script>
+  <script type="text/javascript" src="/assets/js/dashboard-products-script.js"></script>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

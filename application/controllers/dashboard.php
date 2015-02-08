@@ -2,12 +2,6 @@
 
 class Dashboard extends CI_Controller {
 
-	public function __construct()
-	{
-		parent::__construct();
-		//$this->output->enable_profiler();
-	}
-
 	public function index()
 	{
 		//redirect to admin login
@@ -61,6 +55,15 @@ class Dashboard extends CI_Controller {
 	}
 
 	/* ---------------------------
+	 *  JSON orders API
+	 */
+	public function get_orders(){
+		$this->load->model('dashboard_model');
+		$output['orders'] = $this->dashboard_model->get_orders();
+		echo json_encode($output);
+	}
+
+	/* ---------------------------
 	 *  Admin view of products
 	 */
 	public function products(){
@@ -78,6 +81,18 @@ class Dashboard extends CI_Controller {
 		
 	}
 
+	/* ---------------------------
+	 *  JSON products API
+	 */
+	public function get_products(){
+		$this->load->model('dashboard_model');
+		$output['products'] = $this->dashboard_model->get_products();
+		echo json_encode($output);
+	}
+
+	/* ---------------------------
+	 *  Process Log Off
+	 */
 	public function logoff(){
 		$userdata = $this->session->all_userdata();
 		$this->session->unset_userdata($userdata);

@@ -6,7 +6,7 @@
       <div class="col-md-9">
 
         <!-- orders search form -->
-        <form class="navbar-form navbar-left" role="search" method="post" action="">
+        <form id="orders-search-form" class="navbar-form navbar-left" role="search" method="post" action="">
           <div class="form-group">
             <span class="glyphicon glyphicon-search icon-in-bar" aria-hidden="true"></span>
             <input type="text" class="form-control search-with-icon" placeholder="Search">
@@ -18,7 +18,7 @@
       <div class="col-md-3">
 
         <!-- filter menu -->
-        <form id="orders-filter-menu" method="post" action="">
+        <form id="orders-filter-form" method="post" action="">
           <select class="form-control" name="filter">
             <option>Show All</option>
             <option>Order in</option>
@@ -72,17 +72,15 @@
         <!-- pagination -->
         <nav id="orders-pagination">
           <ul class="pagination">
-            <li>
+            <li class="previous">
               <a href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
+
+            <li class="page"><a href="#">1</a></li>
+
+            <li class="next">
               <a href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
@@ -98,7 +96,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" src="/assets/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/assets/js/script.js"></script>
+  <script type="text/javascript" src="/assets/js/dashboard-orders-script.js"></script>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
