@@ -95,7 +95,11 @@ class Dashboard extends CI_Controller {
 	 */
 	public function get_products(){
 		$this->load->model('dashboard_model');
-		$output['products'] = $this->dashboard_model->get_products();
+		if($this->input->post('filter')){
+			$output['products'] = $this->dashboard_model->get_products_filter($this->input->post('filter'));
+		}else{
+			$output['products'] = $this->dashboard_model->get_products();
+		}
 		echo json_encode($output);
 	}
 

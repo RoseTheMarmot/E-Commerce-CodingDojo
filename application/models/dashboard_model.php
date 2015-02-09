@@ -34,7 +34,7 @@ class Dashboard_model extends CI_Model {
 		return $this->db->query($query, array($status))->result_array();
 	}
 
-	//--> TODO: get this search to work with numbers too <---
+	//--> TODO: get this search to work with total too (like caluse doesn't work with renamed columns)<---
 	function get_orders_filter($filter){
 		$query = "Select orders.id, customers.first_name, customers.last_name, orders.created_at, customers.address,
 			customers.address2, customers.city, customers.state, Sum(products.price) as total, orders.status  
@@ -59,6 +59,19 @@ class Dashboard_model extends CI_Model {
 		$query = "SELECT products.id, products.name, products.inventory, Sum(relationships.quantity) as sold
 			FROM products
 			JOIN relationships ON relationships.products_id = products.id
+			GROUP BY products.id
+			ORDER BY products.id ASC";
+		return $this->db->query($query)->result_array();
+	}
+
+	//--> TODO: get this search to work with quantity sold too <---
+	function get_products_filter($filter){
+		$query = "SELECT products.id, products.name, products.inventory, Sum(relationships.quantity) as sold
+			FROM products
+			JOIN relationships ON relationships.products_id = products.id
+			Where products.id Like '%".$filter."%'
+			Or products.name Like '%".$filter."%'
+			Or products.inventory Like '%".$filter."%'
 			GROUP BY products.id
 			ORDER BY products.id ASC";
 		return $this->db->query($query)->result_array();

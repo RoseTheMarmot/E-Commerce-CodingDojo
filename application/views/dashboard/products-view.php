@@ -6,12 +6,11 @@
       <div class="col-md-9">
 
         <!-- product search form -->
-        <form id="products-search-form" class="navbar-form navbar-left" role="search" method="post" action="">
+        <form id="products-search-form" class="navbar-form navbar-left" role="search" method="post" action="get_products">
           <div class="form-group">
             <span class="glyphicon glyphicon-search icon-in-bar" aria-hidden="true"></span>
-            <input type="text" class="form-control search-with-icon" placeholder="Search">
+            <input type="text" name="filter" class="form-control search-with-icon" placeholder="Search">
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
         </form>
 
       </div>
@@ -35,24 +34,7 @@
             </tr>
           </thead>
           <tbody>
-
-            <?php if(!empty($products)){
-              for($i = 0; $i < count($products); $i++){?>
-                <tr>
-                  <td><?="X"?></td>
-                  <td><?=$products[$i]['id']?></td>
-                  <td><?=$products[$i]['name']?></td>
-                  <td><?=$products[$i]['inventory']?></td>
-                  <td><?=$products[$i]['sold']?></td>
-                  <td>
-                    <a href="/dashboard/edit_product/<?=$products[$i]['id']?>">edit</a> 
-                    <a href="/dashboard/delete_product/<?=$products[$i]['id']?>">delete</a>
-                  </td>
-                </tr>
-                <?php
-              }
-            }?>
-            
+            <!-- products -->
           </tbody>
         </table>
 
@@ -64,20 +46,12 @@
         <!-- pagination -->
         <nav id="products-pagination">
           <ul class="pagination">
-            <li>
-              <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
+            <li class="previous">
+              <span aria-label="Previous" aria-hidden="true">&laquo;</span>
             </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-              <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
+            <!-- page numbers here -->
+            <li class="next">
+              <span aria-label="Next" aria-hidden="true">&raquo;</span>
             </li>
           </ul>
         </nav>

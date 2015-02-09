@@ -6,7 +6,7 @@
 	var ordersPages 	= $(	'#orders-pagination'	);
 	var ordersTable		= $(	'#orders-table'			);
 
-	//results pre page
+	//results per page
 	var perPage = 10;
 
 	//load table
