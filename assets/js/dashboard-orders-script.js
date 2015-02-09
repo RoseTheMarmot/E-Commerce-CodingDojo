@@ -1,16 +1,16 @@
 (function($){
 	var jsonData = "{}";
 
-	var ordersSearch 	= $(	'#orders-search-from'	); 
-	var ordersFilter 	= $(	'#orders-filter-from'	); 
+	var ordersSearch 	= $(	'#orders-search-form'	); 
+	var ordersFilter 	= $(	'#orders-filter-form'	); 
 	var ordersPages 	= $(	'#orders-pagination'	);
 	var ordersTable		= $(	'#orders-table'			);
 
 	//results pre page
-	var perPage = 3;
+	var perPage = 10;
 
 	//load table
-	get_orders_json(0);
+	get_orders(0);
 
 	//Pagination listeners
 	$(document).on('click', '#orders-pagination .page', function(){
@@ -24,21 +24,64 @@
 		page_prev($('.active', ordersPages).text());
 	});
 
+	//filter orders listener
+	$('select', ordersFilter).change(function(){
+		if($(this).val() == "Show All"){
+			get_orders(0);
+		}else{
+			ordersFilter.submit();
+		}	
+	});
+	//filter orders handler
+	ordersFilter.submit(function(){
+		get_orders_by_filter(0, ordersFilter);
+		return false;
+	});
+
+	//search bar listener
+	$('input', ordersSearch).keyup(function(){
+		ordersSearch.submit();
+	});
+	//search bar handler
+	ordersSearch.submit(function(){
+		get_orders_by_filter(0, ordersSearch);
+		return false;
+	});
+
 	/* ----------------------------
 	 * Gets JSON data for orders, displaying n (n = perPage) orders,
 	 * starting from the index, start.
 	 */
-	function get_orders_json(start){
+	function get_orders(start){
 		$('tbody', ordersTable).append('<tr> loading ... </tr>');
 		$.get(
 			'/dashboard/get_orders', 
 			function(data){
-				console.log(data);
+				//console.log(data);
 				jsonData = data;
 				fill_table(start);
 				load_pagination(data.orders.length);
 			}, 
 			'json');
+	}
+
+	/* ----------------------------
+	 * Gets JSON data for orders filtered with input from the 
+	 * orders filter menu. Displays n (n = perPage) orders,
+	 * starting from the index, start.
+	 */
+	function get_orders_by_filter(start, filter_form){
+		$.post(
+			filter_form.attr('action'), 
+			filter_form.serialize(), 
+			function(output){
+				//console.log(output);
+				jsonData = output;
+				fill_table(0);
+				load_pagination(jsonData.orders.length);
+			}, 
+			'json'
+		);
 	}
 
 	/* ----------------------------

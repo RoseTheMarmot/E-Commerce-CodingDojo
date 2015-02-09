@@ -42,26 +42,35 @@ class Dashboard extends CI_Controller {
 	 */
 	public function orders(){
 		if($this->session->userdata('is_admin') === true){ //check if admin
-			//get orders
-			$this->load->model('dashboard_model');
-			$orders = $this->dashboard_model->get_orders();
 			//load view
 			$this->load->view('dashboard/header-dashboard');
 			$this->load->view('dashboard/nav-dashboard', array('current' => 'orders'));
-			$this->load->view('dashboard/orders-view', array('orders' => $orders));
+			$this->load->view('dashboard/orders-view');
 		}else{
 			redirect('/main/admin');
 		}	
 	}
 
 	/* ---------------------------
-	 *  JSON orders API
+	 *  JSON orders APIs
+	 *	
 	 */
 	public function get_orders(){
 		$this->load->model('dashboard_model');
-		$output['orders'] = $this->dashboard_model->get_orders();
+		if($this->input->post('filter')){
+			$output['orders'] = $this->dashboard_model->get_orders_filter($this->input->post('filter'));
+		}else{
+			$output['orders'] = $this->dashboard_model->get_orders();
+		}
 		echo json_encode($output);
 	}
+	public function get_orders_by_status(){
+		$status = $this->input->post('filter');
+		$this->load->model('dashboard_model');
+		$output['orders'] = $this->dashboard_model->get_orders_by_status($status);
+		echo json_encode($output);
+	}
+
 
 	/* ---------------------------
 	 *  Admin view of products

@@ -6,19 +6,18 @@
       <div class="col-md-9">
 
         <!-- orders search form -->
-        <form id="orders-search-form" class="navbar-form navbar-left" role="search" method="post" action="">
+        <form id="orders-search-form" class="navbar-form navbar-left" role="search" method="post" action="/dashboard/get_orders">
           <div class="form-group">
             <span class="glyphicon glyphicon-search icon-in-bar" aria-hidden="true"></span>
-            <input type="text" class="form-control search-with-icon" placeholder="Search">
+            <input type="text" class="form-control search-with-icon" name="filter" placeholder="Search">
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
         </form>
 
       </div>
       <div class="col-md-3">
 
         <!-- filter menu -->
-        <form id="orders-filter-form" method="post" action="">
+        <form id="orders-filter-form" method="post" action="/dashboard/get_orders_by_status">
           <select class="form-control" name="filter">
             <option>Show All</option>
             <option>Order in</option>
@@ -45,22 +44,7 @@
             </tr>
           </thead>
           <tbody>
-
-            <?php 
-            if(!empty($orders)){
-              for($i = 0; $i < count($orders); $i++){?>
-                <tr>
-                  <td><?=$orders[$i]['id']?></td>
-                  <td><?=$orders[$i]['first_name']." ".$orders[$i]['last_name']?></td>
-                  <td><?=$orders[$i]['created_at']?></td>
-                  <td><?=$orders[$i]['address']." ".$orders[$i]['address2']." ".$orders[$i]['city'].", ".$orders[$i]['state']?></td>
-                  <td><?="$".$orders[$i]['total']?></td>
-                  <td><?=$orders[$i]['status']?></td>
-                </tr>
-                <?php
-              }
-            }?>
-
+            <!-- orders here -->
           </tbody>
         </table>
 
@@ -75,9 +59,7 @@
             <li class="previous">
               <span aria-label="Previous" aria-hidden="true">&laquo;</span>
             </li>
-
-            <li class="page"><a href="#">1</a></li>
-
+            <!-- page numbers here -->
             <li class="next">
               <span aria-label="Next" aria-hidden="true">&raquo;</span>
             </li>
