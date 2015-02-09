@@ -73,17 +73,13 @@
         <nav id="orders-pagination">
           <ul class="pagination">
             <li class="previous">
-              <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
+              <span aria-label="Previous" aria-hidden="true">&laquo;</span>
             </li>
 
             <li class="page"><a href="#">1</a></li>
 
             <li class="next">
-              <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
+              <span aria-label="Next" aria-hidden="true">&raquo;</span>
             </li>
           </ul>
         </nav>

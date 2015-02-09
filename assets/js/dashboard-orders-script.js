@@ -1,17 +1,27 @@
 (function($){
 	var jsonData = "{}";
 
-	var ordersSearch 	= $(	'#orders-search-from'	);
-	var ordersFilter 	= $(	'#orders-filter-from'	);
+	var ordersSearch 	= $(	'#orders-search-from'	); 
+	var ordersFilter 	= $(	'#orders-filter-from'	); 
 	var ordersPages 	= $(	'#orders-pagination'	);
 	var ordersTable		= $(	'#orders-table'			);
 
-	var perPage = 10;
+	//results pre page
+	var perPage = 3;
 
+	//load table
 	get_orders_json(0);
 
+	//Pagination listeners
 	$(document).on('click', '#orders-pagination .page', function(){
 		fill_table(($(this).text()-1)*perPage);
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+	$('.next', ordersPages).click(function(){
+		page_next($('.active', ordersPages).text());		
+	});
+	$('.previous', ordersPages).click(function(){
+		page_prev($('.active', ordersPages).text());
 	});
 
 	/* ----------------------------
@@ -61,12 +71,44 @@
 	 * returned
 	 */
 	 function load_pagination(length){
-	 	$('.page', ordersPages).remove();
-	 	for(var i = 1; i <= length/perPage; i++){
-	 		$('.next', ordersPages).before('<li class="page"><a href="#">'+i+'</a></li>');
+	 	var paginationID = ordersPages;
+	 	$('.page', paginationID).remove();
+	 	length = Math.ceil(length/perPage);
+	 	if(length > 0){
+	 		$('.next', paginationID).before('<li class="page active"><a href="#">1</a></li>');
+	 	}
+	 	for(var i = 2; i <= length; i++){
+	 		$('.next', paginationID).before('<li class="page"><a href="#">'+i+'</a></li>');
 	 	}
 	 }
 
+	 /* ----------------------------
+	 * Advances pagination, given the current page
+	 */
+	 function page_next(current){
+	 	var paginationID = ordersPages;
+	 	var start = current*perPage; //don't need to add 1, because of 0 based indexing
+	 	//check for end of pagination
+		if($('.active', paginationID).nextAll().length > 1){ 
+			//if not at the end, move over
+			$('.active', paginationID).removeClass('active').next().addClass('active');
+			fill_table(start);
+		}
+	 }
+
+	 /* ----------------------------
+	 * Decrements pagination, given the current page
+	 */
+	 function page_prev(current){
+	 	var paginationID = ordersPages;
+	 	var start = (current - 2)*perPage; // need to subtract 2, because of 0 based indexing
+	 	//check for end of pagination
+		if($('.active', paginationID).prevAll().length > 1){
+			//if not at the end, move over
+			$('.active', paginationID).removeClass('active').prev().addClass('active');
+			fill_table(start);
+		}
+	 }
 
 	/* -------------------------------------------------------------------------------------------------
 	 * Returns HTML string for an order row in the orders table
@@ -74,6 +116,5 @@
 	function order_row(id, firstName, lastName, createdAt, address, address2, city, state, total, status){
 		return '<tr><td>'+id+'</td><td>'+firstName+' '+lastName+'</td><td>'+createdAt+'</td><td>'+address+' '+address2+' '+city+', '+state+'</td><td>'+total+'</td><td>'+status+'</td></tr>';
 	}
-
 
 })(jQuery);
