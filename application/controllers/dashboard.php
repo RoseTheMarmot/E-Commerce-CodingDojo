@@ -56,9 +56,9 @@ class Dashboard extends CI_Controller {
 	 */
 	public function single_order($id){
 		$this->load->model('dashboard_model');
+		
 		$order = $this->dashboard_model->get_order_by_id($id);
 		$items = $this->dashboard_model->get_order_items($id);
-		
 		$shipping = 1.23;
 
 		$this->load->view('dashboard/header-dashboard');
@@ -86,22 +86,21 @@ class Dashboard extends CI_Controller {
 		echo json_encode($output);
 	}
 	public function change_order_status($id){
-		//echo $id;
-		//var_dump(strtolower($this->input->post('status')));
 		if($this->input->post('status')){
 			$this->load->model('dashboard_model');
 			$this->dashboard_model->change_order_status($id, strtolower($this->input->post('status')));
 		}
+		$output['status'] = $this->input->post('status');
+		echo json_encode($output);
 	}
 
 	/* ---------------------------
 	 *  HTML orders APIs
 	 *	
 	 */
-	public function order_rows(){
-		$array = $this->input->post();
-		?>
-		<tr id="row-<?=$array['id']?>">
+	public function order_rows(){ //this function doesn't work super good, not using it right now
+		$array = $this->input->post();?>
+    	<tr id="row-<?=$array['id']?>">
 			<td>
 				<a href="/orders/show/<?=$array['id']?>"><?=$array['id']?></a>
 			</td>
@@ -130,6 +129,25 @@ class Dashboard extends CI_Controller {
 		</tr>
 		<?php 
 	}
+	function order_status_select($status, $id){?>
+		<form method="post" action="/dashboard/change_order_status/<?=$id?>">
+			<select class="form-control" name="status">
+				<option value="order in progress">Order in progress</option> 
+				<?php
+				if(strcmp($status, 'shipped')===0){?>
+					<option selected="selected" value="shipped">Shipped</option><?php
+				}else{?>
+					<option value="shipped">Shipped</option><?php
+				} 
+				if(strcmp($status, 'canceled')===0){?>
+					<option selected="selected" value="canceled">Canceled</option><?php
+				}else{?>
+					<option value="canceled">Canceled</option><?php
+				}?>
+			</select>
+		</form>
+		<?php
+	}
 
 	/* ---------------------------
 	 *  Admin view of products
@@ -146,6 +164,15 @@ class Dashboard extends CI_Controller {
 		}else{
 			redirect('/main/admin');
 		}
+	}
+
+	/* ---------------------------
+	 *  Admin edit products
+	 */
+	public function edit_product($id){
+		$this->load->model('dashboard_model');
+		$product = $this->dashboard_model->get_product_by_id($id);
+		$this->load->view('dashboard/edit-product-view', array('product' => $product));
 	}
 
 	/* ---------------------------

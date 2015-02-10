@@ -19,9 +19,9 @@
         <!-- filter menu -->
         <form id="orders-filter-form" method="post" action="/dashboard/get_orders_by_status">
           <select class="form-control" name="filter">
-            <option>Show All</option>
-            <option>Order in process</option>
-            <option>Shipped</option>
+            <option value="show all">Show All</option>
+            <option value="order in progress">Order in progress</option>
+            <option value="shipped">Shipped</option>
           </select>
         </form>
 
@@ -71,8 +71,6 @@
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script type="text/javascript" src="/assets/js/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/assets/js/dashboard-orders-script.js"></script>
 
 <!-- End Document

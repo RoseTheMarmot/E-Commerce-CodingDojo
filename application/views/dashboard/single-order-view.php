@@ -95,7 +95,7 @@
               $status = "alert-success";
               if(strcmp($order['status'], 'canceled') === 0){
                 $status = "alert-danger";
-              }elseif(strcmp($order['status'], 'order in process') === 0){
+              }elseif(strcmp($order['status'], 'order in progress') === 0){
                 $status = "alert-warning";
               }?>
               <p class="alert <?=$status?>">Status: <?=$order['status']?></p>
@@ -123,8 +123,6 @@
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script type="text/javascript" src="/assets/js/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/assets/js/dashboard-orders-script.js"></script>
 
 <!-- End Document

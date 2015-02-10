@@ -21,6 +21,12 @@
     <div class="row">
       <div class="col-md-12">
 
+        <div id="lightbox">
+            <p class="close">Click to close</p>
+            <div id="content">
+            </div>
+        </div>
+
         <!-- products table -->
         <table id="products-table" class="table-bordered bordered">
           <thead>
@@ -62,8 +68,6 @@
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script type="text/javascript" src="/assets/js/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/assets/js/dashboard-products-script.js"></script>
 
 <!-- End Document

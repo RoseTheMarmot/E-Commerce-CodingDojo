@@ -12,7 +12,12 @@
 	//load table
 	get_products(0);
 
-	//Pagination listeners
+
+	/* ----------------------------
+	 * Page listers and handlers
+	 */
+
+	// --- pagination ---
 	$(document).on('click', '#products-pagination .page', function(){
 		fill_table(($(this).text()-1)*perPage);
 		$(this).addClass('active').siblings().removeClass('active');
@@ -24,14 +29,29 @@
 		page_prev($('.active', productsPages).text());
 	});
 
-	//search bar listener
+	// ---- search bar ----
 	$('input', productsSearch).keyup(function(){
 		productsSearch.submit();
 	});
-	//search bar handler
 	productsSearch.submit(function(){
 		get_products_by_filter(0, productsSearch);
 		return false;
+	});
+
+	// --- lightbox product edit box ---
+	$(document).on('click', '.open-lightbox', function(){
+		$('#lightbox').show();
+		$.get(
+			$(this).attr('href'), 
+			function(data){
+				$('#lightbox #content').append(data);
+			}, 
+			'html');
+		return false;
+	});
+	$("#lightbox .close").click(function(){
+		$('#lightbox').hide();
+		$('#lightbox #content').empty();
 	});
 
 	/* ----------------------------
@@ -139,7 +159,7 @@
 	 * Returns HTML string for an product row in the products table
 	 */
 	function row(id, name, inventory, sold){
-		return '<tr><td>X</td><td>'+id+'</td><td>'+name+'</td><td>'+inventory+'</td><td>'+sold+'</td><td><a href="/dashboard/edit_product/'+id+'">edit</a> <a href="/dashboard/delete_product/'+id+'">delete</a></td></tr>';
+		return '<tr><td>X</td><td>'+id+'</td><td>'+name+'</td><td>'+inventory+'</td><td>'+sold+'</td><td><a class="open-lightbox" href="/dashboard/edit_product/'+id+'">edit</a> <a href="/dashboard/delete_product/'+id+'">delete</a></td></tr>';
 	}
 
 })(jQuery);

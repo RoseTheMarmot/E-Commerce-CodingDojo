@@ -166,7 +166,6 @@ class Dashboard_model extends CI_Model {
 	}
 
 	function change_order_status($id, $status){
-		$this->input->post('');
 		$query = "UPDATE orders SET status = ? WHERE id = ?";
 		return $this->db->query($query, array($status, $id));
 	}
@@ -184,6 +183,11 @@ class Dashboard_model extends CI_Model {
 			GROUP BY products.id
 			ORDER BY products.id ASC";
 		return $this->db->query($query)->result_array();
+	}
+
+	function get_product_by_id($id){
+		$query = "SELECT * FROM products WHERE id = ?";
+		return $this->db->query($query, array($id))->row_array();
 	}
 
 	//--> TODO: get this search to work with quantity sold too <---
