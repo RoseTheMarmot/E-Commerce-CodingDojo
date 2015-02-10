@@ -51,7 +51,20 @@ class Dashboard extends CI_Controller {
 		}	
 	}
 
-	
+	/* ---------------------------
+	 *  Admin detail view of order
+	 */
+	public function single_order($id){
+		$this->load->model('dashboard_model');
+		$order = $this->dashboard_model->get_order_by_id($id);
+		$items = $this->dashboard_model->get_order_items($id);
+		
+		$shipping = 1.23;
+
+		$this->load->view('dashboard/header-dashboard');
+		$this->load->view('dashboard/nav-dashboard');
+		$this->load->view('/dashboard/single-order-view', array('order' => $order, 'items' => $items, 'shipping' => $shipping));
+	}
 
 	/* ---------------------------
 	 *  JSON orders APIs
@@ -73,6 +86,15 @@ class Dashboard extends CI_Controller {
 		echo json_encode($output);
 	}
 
+	public function change_order_status($id){
+		var_dump($id);
+		var_dump($this->input->post('status'));
+		if($this->input->post('status')){
+
+			$this->load->model('dashboard_model');
+			$this->dashboard_model->change_order_status($id, $this->input->post('status'));
+		}
+	}
 
 	/* ---------------------------
 	 *  Admin view of products
@@ -89,7 +111,6 @@ class Dashboard extends CI_Controller {
 		}else{
 			redirect('/main/admin');
 		}
-		
 	}
 
 	/* ---------------------------

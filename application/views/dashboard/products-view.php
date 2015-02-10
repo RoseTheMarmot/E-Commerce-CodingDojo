@@ -22,7 +22,7 @@
       <div class="col-md-12">
 
         <!-- products table -->
-        <table id="products-table" class="table-bordered">
+        <table id="products-table" class="table-bordered bordered">
           <thead>
             <tr>
               <th>Picture</th>

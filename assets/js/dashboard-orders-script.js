@@ -7,7 +7,7 @@
 	var ordersTable		= $(	'#orders-table'			);
 
 	//results per page
-	var perPage = 2;
+	var perPage = 10;
 
 	//load table
 	get_orders(0);
@@ -46,6 +46,11 @@
 	ordersSearch.submit(function(){
 		get_orders_by_filter(0, ordersSearch);
 		return false;
+	});
+
+	//table form listener
+	$(document).on('change', '#orders-table form select', function(){
+		$('#orders-table form').submit();
 	});
 
 	/* ----------------------------
@@ -102,6 +107,7 @@
 					jsonData.orders[start + i].address2,
 					jsonData.orders[start + i].city,
 					jsonData.orders[start + i].state,
+					jsonData.orders[start + i].zipcode,
 					jsonData.orders[start + i].total,
 					jsonData.orders[start + i].status
 				));
@@ -156,8 +162,29 @@
 	/* -------------------------------------------------------------------------------------------------
 	 * Returns HTML string for an order row in the orders table
 	 */
-	function order_row(id, firstName, lastName, createdAt, address, address2, city, state, total, status){
-		return '<tr><td>'+id+'</td><td>'+firstName+' '+lastName+'</td><td>'+createdAt+'</td><td>'+address+' '+address2+' '+city+', '+state+'</td><td>'+total+'</td><td>'+status+'</td></tr>';
+	function order_row(id, firstName, lastName, createdAt, address, address2, city, state, zipcode, total, status){
+		return $('<tr></tr>')
+			.append('<td><a href="/orders/show/'+id+'">'+id+'</a>')
+			.append('</td><td>'+firstName+' '+lastName+'</td><td>'+createdAt+'</td>')
+			.append('<td>'+address+' '+address2+' '+city+', '+state+' '+zipcode+'</td><td>$'+total+'</td>')
+			.append('<td>'+status+'</td>');
+	}
+
+	/* -------------------------------------------------------------------------------------------------
+	 * Returns HTML string for the status form in the orders table
+	 */
+	function select_status(id, status){
+		console.log(id);
+		return $('<form method="post" action="/dashboard/change_order_status/'+id+'"></form>')
+		.append('<select name="status"></select>');
+    /*
+    if(status == 'process'){
+    	return'<form method="post" action="/dashboard/change_order_status/'+id+'"><select name="status"><option value="order in">Order In</option><option value="process" selected="selected">Process</option><option value="shipped">Shipped</option></select></form>';
+    }else if(status == 'shipped'){
+    	return'<form method="post" action="/dashboard/change_order_status/'+id+'"><select name="status"><option value="order in">Order In</option><option value="process">Process</option><option value="shipped" selected="selected">Shipped</option></select></form>';
+    }//else
+    return'<form method="post" action="/dashboard/change_order_status/'+id+'"><select name="status"><option value="order in" selected="selected">Order In</option><option value="process">Process</option><option value="shipped">Shipped</option></select></form>';
+		*/
 	}
 
 })(jQuery);

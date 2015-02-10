@@ -60,29 +60,49 @@ form .icon-in-bar{
 	top: 18px;
 }
 }
-#orders-table, #products-table {
+table.bordered {
 	border-top: 1px solid #888;
 	border-bottom: 1px solid #888;
 	width: 100%;
 }
-	#orders-table td, #orders-table th, #products-table td, #products-table th{
+	table.bordered td, table.bordered th {
 		border-left: 1px solid #888;
 		border-right: 1px solid #888;
 		border-bottom: none;
 		border-top: none;
 		padding: 5px 10px;
 	}
-	#orders-table th, #products-table th{
+	table.bordered th{
 		background-color: #ddd;
 	}
-	#orders-table tr:nth-child(odd), #products-table tr:nth-child(odd){
+	table.bordered tr:nth-child(odd){
 		background-color: #eee;
 	}
+table.outlined{
+	width: 100%;
+	border: 1px solid #888;
+}
+	table.outlined th, table.outlined td {
+		padding: 5px 10px;
+	}
+div.outlined{
+	width: 100%;
+	border: 1px solid #888;
+	padding: 10px;	
+}
 #orders-filter-form{
 	margin-top: 10px;
 }
 #add-product-button{
 	margin-top: 10px;
 	float: right;
+}
+@media all and (min-width: 1091px){
+	#order-details-table{
+		margin-top: -20px;
+	}
+}
+#address-details-div table td{
+	padding: 0px 10px;
 }
 

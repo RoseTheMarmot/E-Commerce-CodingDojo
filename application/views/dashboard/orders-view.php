@@ -32,7 +32,7 @@
       <div class="col-md-12">
 
         <!-- orders table -->
-        <table id="orders-table" class="table-bordered">
+        <table id="orders-table" class="table-bordered bordered">
           <thead>
             <tr>
               <th>Order ID</th>
