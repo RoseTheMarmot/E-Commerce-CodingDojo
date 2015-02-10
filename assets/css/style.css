@@ -1,3 +1,9 @@
+.container {
+	position: relative;
+	top: -220px;
+	width: 960px;
+}
+
 div#header {
 	background-color: black;
 	height: 40px;
@@ -20,10 +26,6 @@ div#header {
 	color: white;
 }
 
-h5.form-descriptions {
-	text-align: right;
-}
-
 input.form-area {
 	margin-left: 40px;
 }
@@ -39,3 +41,66 @@ input.form-area2 {
 	color: white;
 	border: 1px solid black;
 }
+
+td#total p {
+	margin-left: 660px;
+}
+
+td#go-back a {
+	margin-left: 400px;
+	position: absolute;
+	display: inline-block;
+}
+
+td#qty p {
+	margin-right: 20px;	
+}
+
+a {
+	margin-left: 660px;
+	color: white;
+}
+
+#total {
+	margin-left: 760px;
+}
+
+.form-area3 {
+	margin-left: 20px;
+}
+
+.form-area4 {
+
+}
+
+
+.exp {
+	
+}
+
+/*.form-area4 {
+	position: absolute;
+	margin-right: 20px;
+}*/
+
+
+
+
+
+
+
+
+
+/*td#continue-shop a {
+	margin-left: 100px;
+	position: absolute;
+}
+*/
+
+
+
+
+
+/*  tbody tr:nth-child(odd) {
+       background-color: silver;
+  }*/
