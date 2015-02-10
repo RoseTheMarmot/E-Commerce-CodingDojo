@@ -20,8 +20,7 @@
         <form id="orders-filter-form" method="post" action="/dashboard/get_orders_by_status">
           <select class="form-control" name="filter">
             <option>Show All</option>
-            <option>Order in</option>
-            <option>Process</option>
+            <option>Order in process</option>
             <option>Shipped</option>
           </select>
         </form>

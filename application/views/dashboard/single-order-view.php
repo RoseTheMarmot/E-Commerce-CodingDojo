@@ -93,9 +93,9 @@
             <div class="col-md-6">
               <?php 
               $status = "alert-success";
-              if(strcmp($order['status'], 'order in') === 0){
+              if(strcmp($order['status'], 'canceled') === 0){
                 $status = "alert-danger";
-              }elseif(strcmp($order['status'], 'process') === 0){
+              }elseif(strcmp($order['status'], 'order in process') === 0){
                 $status = "alert-warning";
               }?>
               <p class="alert <?=$status?>">Status: <?=$order['status']?></p>

@@ -85,15 +85,50 @@ class Dashboard extends CI_Controller {
 		$output['orders'] = $this->dashboard_model->get_orders_by_status($status);
 		echo json_encode($output);
 	}
-
 	public function change_order_status($id){
-		var_dump($id);
-		var_dump($this->input->post('status'));
+		//echo $id;
+		//var_dump(strtolower($this->input->post('status')));
 		if($this->input->post('status')){
-
 			$this->load->model('dashboard_model');
-			$this->dashboard_model->change_order_status($id, $this->input->post('status'));
+			$this->dashboard_model->change_order_status($id, strtolower($this->input->post('status')));
 		}
+	}
+
+	/* ---------------------------
+	 *  HTML orders APIs
+	 *	
+	 */
+	public function order_rows(){
+		$array = $this->input->post();
+		?>
+		<tr id="row-<?=$array['id']?>">
+			<td>
+				<a href="/orders/show/<?=$array['id']?>"><?=$array['id']?></a>
+			</td>
+			<td><?=$array['first_name']." ".$array['last_name']?></td>
+			<td><?=$array['created_at']?></td>
+			<td><?=$array['address']." ".$array['address2']." ".$array['city'].", ".$array['state']." ".$array['zipcode']?></td>
+			<td><?=$array['total']?></td>
+			<td>
+				<form method="post" action="/dashboard/change_order_status/<?=$array['id']?>">
+					<select name="status">
+						<option value="order in progress">Order in progress</option> 
+						<?php
+						if(strcmp($array['status'], 'shipped')===0){?>
+							<option selected="selected" value="shipped">Shipped</option><?php
+						}else{?>
+							<option value="shipped">Shipped</option><?php
+						} 
+						if(strcmp($array['status'], 'canceled')===0){?>
+							<option selected="selected" value="canceled">Canceled</option><?php
+						}else{?>
+							<option value="canceled">Canceled</option><?php
+						}?>
+					</select>
+				</form>
+			</td>
+		</tr>
+		<?php 
 	}
 
 	/* ---------------------------
