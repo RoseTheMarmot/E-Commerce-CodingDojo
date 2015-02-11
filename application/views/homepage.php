@@ -157,7 +157,7 @@
       <ul><p>Categories</p>
 <?php   foreach($categories as $category)
         { ?>
-        <li><a href="/main/homepage/<?=$category['category']?>"><?=$category['category']?></a></li>
+        <li><a href="/view/<?=$category['category']?>" class='merch_link'><?=$category['category']?></a></li>
 <?php   }; ?>
         <li><a href="/">Show All</a></li>
       </ul>
@@ -167,7 +167,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
     <div id='body' class='col-md-7'>
-      <h1><?=$category['category']?> (page nth)</h1>   <!-- NEED TO DYNAMICALLY CHANGE PAGE COUNT -->
+      <h1>All Products (page nth)</h1>   <!-- NEED TO DYNAMICALLY CHANGE PAGE COUNT -->
       <nav class='pull-right'>
         <ul class="pagination">
             <li>
@@ -262,7 +262,8 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" src="/assets/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/assets/js/script.js"></script>
+  <script type="text/javascript" src="/assets/js/homepage_script.js"></script>
+  <script type="text/javascript" src="/assets/js/merchpage_script.js"></script>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

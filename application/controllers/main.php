@@ -26,10 +26,18 @@ class Main extends CI_Controller {
 
 	public function homepage($category)
 	{
+		// echo $category;
+		// die();
 		$items = $this->category_model->sort_merch($category);
 	}
 
-
+	public function get_merch($name)
+	{
+		$this->load->model('category_model');
+		$values = $this->category_model->sort_merch($name);
+		$output['values'] = $values;
+		echo json_encode($output);
+	}
 }
 
 //end of main controller
