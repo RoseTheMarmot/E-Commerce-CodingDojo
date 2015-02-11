@@ -55,15 +55,20 @@ class Dashboard extends CI_Controller {
 	 *  Admin detail view of order
 	 */
 	public function single_order($id){
-		$this->load->model('dashboard_model');
+		if($this->session->userdata('is_admin') === true){ //check if admin
+			$this->load->model('dashboard_model');
 		
-		$order = $this->dashboard_model->get_order_by_id($id);
-		$items = $this->dashboard_model->get_order_items($id);
-		$shipping = 1.23;
+			$order = $this->dashboard_model->get_order_by_id($id);
+			$items = $this->dashboard_model->get_order_items($id);
+			$shipping = 1.23;
 
-		$this->load->view('dashboard/header-dashboard');
-		$this->load->view('dashboard/nav-dashboard');
-		$this->load->view('/dashboard/single-order-view', array('order' => $order, 'items' => $items, 'shipping' => $shipping));
+			$this->load->view('dashboard/header-dashboard');
+			$this->load->view('dashboard/nav-dashboard');
+			$this->load->view('/dashboard/single-order-view', array('order' => $order, 'items' => $items, 'shipping' => $shipping));
+		}else{
+			redirect('/main/admin');
+		}	
+		
 	}
 
 	/* ---------------------------
@@ -71,27 +76,40 @@ class Dashboard extends CI_Controller {
 	 *	
 	 */
 	public function get_orders(){
-		$this->load->model('dashboard_model');
-		if($this->input->post('filter')){
-			$output['orders'] = $this->dashboard_model->get_orders_filter($this->input->post('filter'));
+		if($this->session->userdata('is_admin') === true){ //check if admin
+			$this->load->model('dashboard_model');
+			if($this->input->post('filter')){
+				$output['orders'] = $this->dashboard_model->get_orders_filter($this->input->post('filter'));
+			}else{
+				$output['orders'] = $this->dashboard_model->get_orders();
+			}
+			echo json_encode($output);
 		}else{
-			$output['orders'] = $this->dashboard_model->get_orders();
+			redirect('/main/admin');
 		}
-		echo json_encode($output);
 	}
 	public function get_orders_by_status(){
-		$status = $this->input->post('filter');
-		$this->load->model('dashboard_model');
-		$output['orders'] = $this->dashboard_model->get_orders_by_status($status);
-		echo json_encode($output);
+		if($this->session->userdata('is_admin') === true){ //check if admin
+			$status = $this->input->post('filter');
+			$this->load->model('dashboard_model');
+			$output['orders'] = $this->dashboard_model->get_orders_by_status($status);
+			echo json_encode($output);
+		}else{
+			redirect('/main/admin');
+		}
 	}
 	public function change_order_status($id){
-		if($this->input->post('status')){
-			$this->load->model('dashboard_model');
-			$this->dashboard_model->change_order_status($id, strtolower($this->input->post('status')));
+		if($this->session->userdata('is_admin') === true){ //check if admin
+			if($this->input->post('status')){
+				$this->load->model('dashboard_model');
+				$this->dashboard_model->change_order_status($id, strtolower($this->input->post('status')));
+			}
+			$output['status'] = $this->input->post('status');
+			echo json_encode($output);
+		}else{
+			redirect('/main/admin');
 		}
-		$output['status'] = $this->input->post('status');
-		echo json_encode($output);
+		
 	}
 
 	/* ---------------------------
@@ -170,41 +188,71 @@ class Dashboard extends CI_Controller {
 	 *  Admin edit products
 	 */
 	public function edit_product($id){
-		$this->load->model('dashboard_model');
-		$product = $this->dashboard_model->get_product_by_id($id);
-		$this->load->view('dashboard/edit-product-view', array('product' => $product));
+		if($this->session->userdata('is_admin') === true){ //check if admin
+			$this->load->model('dashboard_model');
+			$product = $this->dashboard_model->get_product_by_id($id);
+			$this->load->view('dashboard/edit-product-view', array('product' => $product));
+		}else{
+			redirect('/main/admin');
+		}
 	}
 
 	public function edit_product_process($id){
-		if($this->input->post()){
-			$name = $this->input->post('name');
-			$description = $this->input->post('description');
+		if($this->session->userdata('is_admin') === true){ //check if admin
+			if($this->input->post()){
+				$name = $this->input->post('name');
+				$description = $this->input->post('description');
 
-			$this->load->model('dashboard_model');
-			$this->dashboard_model->update_product($id, $name, $description);
-		}
-		echo "{}";	
+				$this->load->model('dashboard_model');
+				$this->dashboard_model->update_product($id, $name, $description);
+			}
+			echo "{}";
+		}else{
+			redirect('/main/admin');
+		}		
 	}
 
+	/* ---------------------------
+	 *  Admin add products view
+	 */
 	public function add_product(){
-		$this->load->view('dashboard/add-product-view');
-	}
-
-	public function add_product_process(){
-		if($this->input->post()){
-			$name = $this->input->post('name');
-			$description = $this->input->post('description');
-
-			$this->load->model('dashboard_model');
-			$this->dashboard_model->add_product($name, $description);
+		if($this->session->userdata('is_admin') === true){ //check if admin
+			$this->load->view('dashboard/add-product-view');
+		}else{
+			redirect('/main/admin');
 		}
-		echo "{}";
+		
 	}
 
+	/* ---------------------------
+	 *  Process adding products
+	 */
+	public function add_product_process(){
+		if($this->session->userdata('is_admin') === true){ //check if admin
+			if($this->input->post()){
+				$name = $this->input->post('name');
+				$description = $this->input->post('description');
+
+				$this->load->model('dashboard_model');
+				$this->dashboard_model->add_product($name, $description);
+			}
+			echo "{}";
+		}else{
+			redirect('/main/admin');
+		}	
+	}
+
+	/* ---------------------------
+	 *  Process deleting products
+	 */
 	public function delete_product($id){
-		$this->load->model('dashboard_model');
-		$this->dashboard_model->delete_product($id);
-		echo "{}";
+		if($this->session->userdata('is_admin') === true){ //check if admin
+			$this->load->model('dashboard_model');
+			$this->dashboard_model->delete_product($id);
+			echo "{}";
+		}else{
+			redirect('/main/admin');
+		}
 	}
 
 	/* ---------------------------
