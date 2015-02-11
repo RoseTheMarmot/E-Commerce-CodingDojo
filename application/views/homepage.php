@@ -112,8 +112,8 @@
  <!-- NEED TO MAKE THIS DROP DOWN DYNAMIC
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle pull-right" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">Search By<span class="caret"></span></button>
-        <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+        <button class="btn btn-default dropdown-toggle pull-left" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">Search By<span class="caret"></span></button>
+        <ul class="dropdown-menu pull-left" role="menu" aria-labelledby="dropdownMenu1">
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Price Low-to-high</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Price High-to-low</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#">A-to-Z</a></li>
@@ -130,7 +130,7 @@
 <?php
   foreach($results as $result)
   { ?>   <a href="view/merch/<?=$result['id']?>" class="<?=$result['category']?>">
-          <div class='merch col-md-3'>
+          <div class='merch col-md-3 merch-div'>
             <p><?=$result['name']?></p>
             <img src="/assets/images/<?=$result['image']?>" alt="..." class="img-thumbnail">
             <p>$<?=$result['price']?></p>

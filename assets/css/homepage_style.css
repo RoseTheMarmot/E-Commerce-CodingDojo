@@ -51,6 +51,9 @@
     #content img{
       margin: 5px;
     }
+  .merch-div{
+    height: 250px;
+  }
   #footer nav{
     margin-left: 30%;
   }
