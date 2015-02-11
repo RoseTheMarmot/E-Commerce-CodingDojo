@@ -1,79 +1,88 @@
-.container {
-	position: relative;
-	top: -220px;
-	width: 960px;
+*{
+	/*outline: 1px dotted #00ffff;*/
 }
-
+.container {
+	/*position: relative;
+	top: -220px;
+	width: 960px;*/
+}
 div#header {
 	background-color: black;
 	height: 40px;
 	padding-top: 5px;
 	padding-left: 15px;
 }
-
 #title {
 	font-size: 20px;
 	color: white;
 }
-
 #shop-cart {
 	margin-left: 400px;
 	color: white;
 }
-
 #cart-quantity {
 	margin-left: 400px;
 	color: white;
 }
-
 input.form-area {
 	margin-left: 40px;
 }
-
 input.form-area2 {
 	margin-left: 20px;
 	vertical-align: top;
 }
-
 #button2 {
 	margin-left: 245px;
 	background-color: blue;
 	color: white;
 	border: 1px solid black;
 }
-
 td#total p {
 	margin-left: 660px;
 }
-
 td#go-back a {
 	margin-left: 400px;
 	position: absolute;
 	display: inline-block;
 }
-
 td#qty p {
 	margin-right: 20px;	
 }
-
 a {
-	margin-left: 660px;
-	color: white;
+	/*margin-left: 660px;
+	color: white;*/
 }
-
 #total {
 	margin-left: 760px;
 }
-
 .form-area3 {
 	margin-left: 20px;
 }
-
 .form-area4 {
 
 }
-
 .exp {
 	
 }
-
+.admin-login{
+ 	margin-top: 80px;
+}
+.admin-login h1, .admin-login h3, .admin-login h2 {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 40px;
+}
+.admin-login label{
+	width: 30%;
+	margin: 5px 0px;
+	padding-left: 10px;
+}
+.admin-login input{
+	width: 70%;
+	margin: 5px 0px;
+}
+.admin-login input[type*=submit]{
+	width: auto;
+	float: right;
+	margin: 10px 0px;
+}
