@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md-12">
         <h3>Add Product</h3>
-        <form method="post" action="/dashboard/add_product_process" enctype="multipart/form-data">
+        <form method="post" action="/dashboard/add_product_process">
           
           <div class="row">
             <div class="col-md-5">
@@ -31,12 +31,7 @@
             </div>
             <div class="col-md-7">
               <select class="form-control" name="categories">
-                <?php if(!empty($categories)){
-                  foreach($categories as $category){?>
-                    <option><?=$category['category']?></option>
-                    <?php
-                  }
-                }?>
+                <option>option</option>
               </select>
             </div>
           </div>
@@ -55,8 +50,7 @@
                <label>Images</label>
             </div>
             <div class="col-md-7">
-              <!--<button class="btn btn-default">Upload</button>-->
-              <input type="file" name="image" id="upload-image">
+              <button class="btn btn-default">Upload</button>
             </div>
           </div>
         </form>

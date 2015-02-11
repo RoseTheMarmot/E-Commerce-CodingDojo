@@ -1,11 +1,25 @@
 
+  <?php 
+  if(empty($product['id'])){
+    $product['id'] = "";
+  }
+  if(empty($product['name'])){
+    $product['name'] = "";
+  }
+  if(empty($product['description'])){
+    $product['description'] = "";
+  }
+  if(empty($product['picture'])){
+    $product['picture'] = "";
+  }
+  ?>
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container lightbox-item">
     <div class="row">
       <div class="col-md-12">
         <h3>Edit Product - ID <?=$product['id']?></h3>
-        <form method="post" action="/dashboard/edit_product_process/<?=$product['id']?>" enctype="multipart/form-data">
+        <form method="post" action="/dashboard/edit_product_process/<?=$product['id']?>">
           
           <div class="row">
             <div class="col-md-5">
@@ -30,17 +44,8 @@
                <label>Categories</label>
             </div>
             <div class="col-md-7">
-              <select class="form-control" name="category">
-                <?php foreach($categories as $category){
-                  if(strcmp($category['category'], $product['category'])===0){?>
-                    <option selected="selected"><?=$category['category']?></option>
-                    <?php
-                  }else{?>
-                    <option><?=$category['category']?></option>
-                    <?php
-                  }
-                }?>
-                
+              <select class="form-control" name="categories">
+                <option>option</option>
               </select>
             </div>
           </div>
@@ -59,9 +64,8 @@
                <label>Images</label>
             </div>
             <div class="col-md-7">
-              <!--<button class="btn btn-default">Upload</button>-->
-              <input type="file" name="image">
-              <img src="/assets/images/<?=$product['image']?>" alt="<?=$product['image']?>">
+              <button class="btn btn-default">Upload</button>
+              <img src="/assets/images/<?=$product['picture']?>" alt="<?=$product['picture']?>">
             </div>
           </div>
         </form>

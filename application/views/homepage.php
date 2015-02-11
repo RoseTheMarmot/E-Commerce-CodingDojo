@@ -6,8 +6,8 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
   <title>Dojo eCommerce</title>
-  <meta name="description" content="A great e-commerce website">
-  <meta name="author" content="">
+<!--   <meta name="description" content="">
+  <meta name="author" content=""> -->
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -27,11 +27,12 @@
     padding: 0px;
     margin: 0px;
   }
-  div#header{
+
+
+
+  #header{
     background-color: black;
-    color: white;
-    overflow: hidden; 
-    height: auto;
+    color: white; 
   }
     #header h1, #header button{
       display: inline-block;
@@ -40,6 +41,9 @@
     #header button{
       margin-top: 22px;
     }
+
+
+
   #menu{
     display: inline;
     margin-top: 15px;
@@ -65,36 +69,43 @@
     #menu a{
       font-style: italic;
     }
-  #body{
-    border: 1px solid black;
-    border-radius: 5px;
+
+
+
+#body{
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-left: 15px;
+  display: inline-block;
+  margin-bottom: 50px;
+}
+  #body h1, #body nav{
+  display: inline-block;
+  }
+  div.dropdown{
     margin-top: 15px;
-    margin-left: 15px;
-    display: inline-block;
-    margin-bottom: 50px;
   }
-    #body h1, #body nav{
-    display: inline-block;
-    }
-    div.dropdown{
-      margin-top: 15px;
-    }
-  #content{
-    display:inline-block;
-    margin-top: 70px;
+
+
+
+
+#content{
+  display:inline-block;
+  margin-top: 70px;
+}
+  #content p{
+    text-align: center;
   }
-    #content p{
-      text-align: center;
-    }
-    #content img{
-      margin: 5px;
-    }
-  #footer nav{
-    margin-left: 30%;
+  #content img{
+    margin: 5px;
   }
-  #footer nav{
-    margin-left: 30%;
-  }
+
+
+#footer nav{
+  margin-left: 30%;
+}
+
   </style>
 
   <!-- Favicon
@@ -114,11 +125,9 @@
 
     <div id="header" class='col-md-12'>
       <h1>Dojo eCommerce</h1>
-      <a href="/main/carts">
-        <button type="button" class="btn btn-info pull-right">
-          <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart (nth)
-        </button>
-      </a>
+      <button type="button" class="btn btn-info pull-right">
+        <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart (nth)
+      </button>
     </div>
 
  <!-- END OF HEADER // START OF LEFT SIDE MENU
@@ -158,7 +167,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
     <div id='body' class='col-md-7'>
-      <h1><?=$category['category']?> (page nth)</h1>   <!-- NEED TO DYNAMICALLY CHANGE PAGE COUNT -->
+      <h1>All Products (page nth)</h1>   <!-- NEED TO DYNAMICALLY CHANGE PAGE COUNT -->
       <nav class='pull-right'>
         <ul class="pagination">
             <li>
@@ -204,7 +213,7 @@
   { ?>   <a href="view/merch/<?=$result['id']?>" class="<?=$result['category']?>">
           <div class='merch col-md-3'>
             <p><?=$result['name']?></p>
-            <img src="/assets/images/<?=$result['image']?>" alt="..." class="img-thumbnail">
+            <img src="/assets/<?=$result['image']?>" alt="..." class="img-thumbnail">
             <p><?=$result['price']?></p>
           </div>
         </a>
@@ -253,9 +262,9 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" src="/assets/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/assets/js/script.js"></script>
   <script type="text/javascript" src="/assets/js/homepage_script.js"></script>
-  
+  <script type="text/javascript" src="/assets/js/merchpage_script.js"></script>
+
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>

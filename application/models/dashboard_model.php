@@ -25,13 +25,13 @@ class Dashboard_model extends CI_Model {
 			    orders.status
 			FROM
 			    orders
-			        LEFT JOIN
+			        JOIN
 			    relationships ON relationships.orders_id = orders.id
-			        LEFT JOIN
+			        JOIN
 			    customers ON customers.id = relationships.customers_id
-			        LEFT JOIN
+			        JOIN
 			    products ON relationships.products_id = products.id
-					LEFT JOIN
+					JOIN
 				addresses ON addresses.id = customers.billing_id
 			GROUP BY orders.id
 			ORDER BY orders.id DESC";
@@ -53,13 +53,13 @@ class Dashboard_model extends CI_Model {
 			    orders.status
 			FROM
 			    orders
-			        LEFT JOIN
+			        JOIN
 			    relationships ON relationships.orders_id = orders.id
-			        LEFT JOIN
+			        JOIN
 			    customers ON customers.id = relationships.customers_id
-			        LEFT JOIN
+			        JOIN
 			    products ON relationships.products_id = products.id
-			        LEFT JOIN
+			        JOIN
 			    addresses ON addresses.id = customers.billing_id
 			WHERE
 			    status = ?
@@ -84,13 +84,13 @@ class Dashboard_model extends CI_Model {
 			    orders.status
 			FROM
 			    orders
-			        LEFT JOIN
+			        JOIN
 			    relationships ON relationships.orders_id = orders.id
-			        LEFT JOIN
+			        JOIN
 			    customers ON customers.id = relationships.customers_id
-			        LEFT JOIN
+			        JOIN
 			    products ON relationships.products_id = products.id
-			        LEFT JOIN
+			        JOIN
 			    addresses ON addresses.id = customers.billing_id
 			WHERE
 			    first_name LIKE '%".$filter."%'
@@ -125,15 +125,15 @@ class Dashboard_model extends CI_Model {
 			    SUM(products.price) AS total
 			FROM
 			    orders
-			        LEFT JOIN
+			        JOIN
 			    relationships ON relationships.orders_id = orders.id
-			        LEFT JOIN
+			        JOIN
 			    customers ON customers.id = relationships.customers_id
-			        LEFT JOIN
+			        JOIN
 			    products ON products.id = relationships.products_id
-			        LEFT JOIN
+			        JOIN
 			    addresses AS billing ON billing.id = customers.billing_id
-			        LEFT JOIN
+			        JOIN
 			    addresses AS shipping ON shipping.id = customers.shipping_id
 			WHERE
 			    orders.id = ?
@@ -150,15 +150,15 @@ class Dashboard_model extends CI_Model {
 			    relationships.quantity * products.price as total
 			FROM
 			    orders
-			        LEFT JOIN
+			        JOIN
 			    relationships ON relationships.orders_id = orders.id
-			        LEFT JOIN
+			        JOIN
 			    customers ON customers.id = relationships.customers_id
-			        LEFT JOIN
+			        JOIN
 			    products ON products.id = relationships.products_id
-			        LEFT JOIN
+			        JOIN
 			    addresses AS billing ON billing.id = customers.billing_id
-			        LEFT JOIN
+			        JOIN
 			    addresses AS shipping ON shipping.id = customers.shipping_id
 			WHERE
 			    orders.id = ?";
@@ -212,32 +212,14 @@ class Dashboard_model extends CI_Model {
 		return $this->db->query($query)->result_array();
 	}
 
-	function get_product_categories(){
-		$query = "SELECT category FROM products GROUP BY category";
-		return $this->db->query($query)->result_array();
+	function update_product($id, $name, $description){
+		$query = "UPDATE products SET name = ?, description = ?, updated_at = NOW() WHERE id = ?";
+		return $this->db->query($query, array($name, $description, $id));
 	}
 
-	function update_product($id, $name, $description, $category, $image){
-		$query = "UPDATE 
-				products 
-			SET 
-				name = ?, 
-				description = ?, 
-				category = ?, 
-				image = ?,
-				updated_at = NOW() 
-			WHERE 
-				id = ?";
-		return $this->db->query($query, array($name, $description, $category, $image, $id));
-	}
-
-	function add_product($name, $description, $category, $image){
-		$query = "INSERT INTO 
-				products 
-				(name, description, category, image, added_at, updated_at) 
-			VALUES 
-				(?, ?, ?, ?, NOW(), NOW())";
-		$this->db->query($query, array($name, $description, $category, $image));
+	function add_product($name, $description){
+		$query = "INSERT INTO products (name, description, added_at, updated_at) VALUES (?, ?, NOW(), NOW())";
+		$this->db->query($query, array($name, $description));
 		return $this->db->insert_id();
 	}
 
