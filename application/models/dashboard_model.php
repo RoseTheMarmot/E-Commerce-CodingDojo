@@ -217,27 +217,28 @@ class Dashboard_model extends CI_Model {
 		return $this->db->query($query)->result_array();
 	}
 
-	function update_product($id, $name, $description, $category, $image){
+	function update_product($id, $name, $description, $category, $price, $image){
 		$query = "UPDATE 
 				products 
 			SET 
 				name = ?, 
 				description = ?, 
 				category = ?, 
+				price = ?,
 				image = ?,
 				updated_at = NOW() 
 			WHERE 
 				id = ?";
-		return $this->db->query($query, array($name, $description, $category, $image, $id));
+		return $this->db->query($query, array($name, $description, $category, $price, $image, $id));
 	}
 
-	function add_product($name, $description, $category, $image){
+	function add_product($name, $description, $category, $price, $image){
 		$query = "INSERT INTO 
 				products 
-				(name, description, category, image, added_at, updated_at) 
+				(name, description, category, price, image, added_at, updated_at) 
 			VALUES 
-				(?, ?, ?, ?, NOW(), NOW())";
-		$this->db->query($query, array($name, $description, $category, $image));
+				(?, ?, ?, ?, ?, NOW(), NOW())";
+		$this->db->query($query, array($name, $description, $category, $price, $image));
 		return $this->db->insert_id();
 	}
 

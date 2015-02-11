@@ -30,7 +30,7 @@
                <label>Categories</label>
             </div>
             <div class="col-md-7">
-              <select class="form-control" name="categories">
+              <select class="form-control" name="category">
                 <?php if(!empty($categories)){
                   foreach($categories as $category){?>
                     <option><?=$category['category']?></option>
@@ -47,6 +47,15 @@
             </div>
             <div class="col-md-7">
               <input type="text" name="new-category">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5">
+               <label>Price</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" name="price">
             </div>
           </div>
 

@@ -4,8 +4,12 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		//redirect to admin login
-		redirect('/main/admin');
+		if($this->session->userdata('is_admin') === true){
+			redirect('/dashboard/products');
+		}else{
+			//redirect to admin login
+			redirect('/main/admin');
+		}	
 	}
 
 	/* ---------------------------
@@ -206,7 +210,7 @@ class Dashboard extends CI_Controller {
 			$info = $this->process_product($id);
 			if($info){
 				$this->load->model('dashboard_model');
-				$this->dashboard_model->update_product($info['id'], $info['name'], $info['description'], $info['category'], $info['image']);
+				$this->dashboard_model->update_product($info['id'], $info['name'], $info['description'], $info['category'], $info['price'], $info['image']);
 			}
 			//echo "{}";
 			redirect('/dashboard/products');
@@ -237,7 +241,7 @@ class Dashboard extends CI_Controller {
 			$info = $this->process_product(0);
 			if($info){
 				$this->load->model('dashboard_model');
-				$this->dashboard_model->add_product($info['name'], $info['description'], $info['category'], $info['image']);
+				$this->dashboard_model->add_product($info['name'], $info['description'], $info['category'], $info['price'], $info['image']);
 			}
 			//echo "{}";
 			redirect('/dashboard/products');
@@ -282,7 +286,7 @@ class Dashboard extends CI_Controller {
 	public function logoff(){
 		$userdata = $this->session->all_userdata();
 		$this->session->unset_userdata($userdata);
-		redirect("/main/admin");
+		redirect("/");
 	}
 
 	/* ---------------------------
@@ -297,10 +301,15 @@ class Dashboard extends CI_Controller {
 				'name' => $this->input->post('name'), 
 				'description' => $this->input->post('description'), 
 				'category' => $this->input->post('category'), 
+				'price' => $this->input->post('price'),
 				'image' => $this->process_image()
 				);
-			if($this->input->post('new-category')){
+			if($this->input->post('new-category') && strlen($this->input->post('new-category')) > 0){
+				echo "<br/>in if<br/>";
 				$array['category'] = $this->input->post('new-category');
+			}
+			if($this->input->post('image-title')){
+				$array['image'] = $this->input->post('image-title');
 			}
 		}
 		return $array;

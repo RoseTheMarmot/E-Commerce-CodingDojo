@@ -8,7 +8,7 @@
 	var lightbox 		= $(	'#lightbox'				);
 
 	//results per page
-	var perPage = 10;
+	var perPage = 5;
 
 	//load table
 	get_products(0);

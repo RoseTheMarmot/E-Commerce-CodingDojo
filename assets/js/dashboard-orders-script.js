@@ -7,7 +7,7 @@
 	var ordersTable		= $(	'#orders-table'			);
 
 	//results per page
-	var perPage = 3;
+	var perPage = 5;
 
 	//load table
 	get_orders(0);

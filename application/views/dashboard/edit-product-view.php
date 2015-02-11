@@ -56,11 +56,21 @@
 
           <div class="row">
             <div class="col-md-5">
+               <label>Price</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" name="price" value="<?=$product['price']?>">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5">
                <label>Images</label>
             </div>
             <div class="col-md-7">
               <!--<button class="btn btn-default">Upload</button>-->
               <input type="file" name="image">
+              <input type="hidden" name="image-title" value="<?=$product['image']?>">
               <img src="/assets/images/<?=$product['image']?>" alt="<?=$product['image']?>">
             </div>
           </div>
