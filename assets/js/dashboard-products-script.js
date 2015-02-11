@@ -62,7 +62,7 @@
 		return false;
 	});
 
-	// --- lightbox product edit box ---
+	// --- lightbox product edit/add box ---
 	$(document).on('click', '.open-lightbox', function(){
 		lightbox.show();
 		$.get(
@@ -92,6 +92,7 @@
 	lightbox.on('click', '#update-edit-product', function(){
 		$('form', lightbox).submit();
 	});
+	/* Needs some edits in order to upload files via Ajax. 
 	lightbox.on('submit', 'form', function(){
 		$.post(
 			$(this).attr('action'), 
@@ -103,6 +104,7 @@
 			'json');
 		return false;
 	});
+	*/
 
 	/* ----------------------------
 	 * Gets JSON data for products, displaying n (n = perPage) products,
@@ -218,6 +220,12 @@
 	 * Returns HTML string for an product row in the products table
 	 */
 	function row(id, image, name, inventory, sold){
+		if(sold == null){
+			sold = 0;
+		}
+		if(inventory == null){
+			inventory = 0;
+		}
 		return '<tr><td><img src="/assets/images/'+image+'" alt="'+image+'"></td><td>'+id+'</td><td>'+name+'</td><td>'+inventory+'</td><td>'+sold+'</td><td><a class="open-lightbox" href="/dashboard/edit_product/'+id+'">edit</a> <a class="delete-product" href="/dashboard/delete_product/'+id+'">delete</a></td></tr>';
 	}
 

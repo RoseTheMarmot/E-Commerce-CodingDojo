@@ -63,7 +63,7 @@
         </a>
 
         <h1><?= $results['name'];?></h1>
-        <img src="/assets/images<?=$results['image'];?>" class="img-thumbnail">
+        <img src="/assets/images/<?=$results['image'];?>" class="img-thumbnail">
 
 
         
@@ -123,7 +123,7 @@
         <a href="/view/merch/<?=$item['id']?>" class="<?=$item['category'];?>">
           <div class='merch col-md-2'>
             <p><?=$item['name'];?></p>
-            <img src="/assets/images<?=$item['image'];?>" alt="..." class="img-thumbnail">
+            <img src="/assets/images/<?=$item['image'];?>" alt="..." class="img-thumbnail">
             <p><?=$item['price'];?></p>
           </div>
          </a>

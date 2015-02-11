@@ -133,7 +133,7 @@
           <div class='merch col-md-3'>
             <p><?=$result['name']?></p>
             <img src="/assets/images/<?=$result['image']?>" alt="..." class="img-thumbnail">
-            <p><?=$result['price']?></p>
+            <p>$<?=$result['price']?></p>
           </div>
         </a>
 <?php  }
