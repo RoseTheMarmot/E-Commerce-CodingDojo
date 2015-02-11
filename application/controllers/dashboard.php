@@ -203,28 +203,13 @@ class Dashboard extends CI_Controller {
 	 */
 	public function edit_product_process($id){
 		if($this->session->userdata('is_admin') === true){ //check if admin
-			if($this->input->post()){
-				$name = $this->input->post('name');
-				$description = $this->input->post('description');
-				$category = $this->input->post('category');
-				if($this->input->post('new-category')){
-					$category = $this->input->post('new-category');
-				}
-				$image = null;
-				if(!empty($_FILES['image']) 
-						&& $_FILES['image']['size'] <= 5*1024*1024
-						&& ( strcmp($_FILES['image']['type'], "image/jpg") === 0
-							|| strcmp($_FILES['image']['type'], "image/png") === 0 
-							|| strcmp($_FILES['image']['type'], "image/jpeg") === 0
-							|| strcmp($_FILES['image']['type'], "image/gif") === 0 )
-					){
-					move_uploaded_file($_FILES['image']['tmp_name'], './assets/images/'.$_FILES['image']['name']);
-					$image = $_FILES['image']['name'];
-				}
+			$info = $this->process_product($id);
+			if($info){
 				$this->load->model('dashboard_model');
-				$this->dashboard_model->update_product($id, $name, $description, $category, $image);
+				$this->dashboard_model->update_product($info['id'], $info['name'], $info['description'], $info['category'], $info['image']);
 			}
-			echo "{}";
+			//echo "{}";
+			redirect('/dashboard/products');
 		}else{
 			redirect('/main/admin');
 		}		
@@ -235,7 +220,9 @@ class Dashboard extends CI_Controller {
 	 */
 	public function add_product(){
 		if($this->session->userdata('is_admin') === true){ //check if admin
-			$this->load->view('dashboard/add-product-view');
+			$this->load->model('dashboard_model');
+			$categories = $this->dashboard_model->get_product_categories();
+			$this->load->view('dashboard/add-product-view', array('categories' => $categories));
 		}else{
 			redirect('/main/admin');
 		}
@@ -247,14 +234,13 @@ class Dashboard extends CI_Controller {
 	 */
 	public function add_product_process(){
 		if($this->session->userdata('is_admin') === true){ //check if admin
-			if($this->input->post()){
-				$name = $this->input->post('name');
-				$description = $this->input->post('description');
-
+			$info = $this->process_product(0);
+			if($info){
 				$this->load->model('dashboard_model');
-				$this->dashboard_model->add_product($name, $description);
+				$this->dashboard_model->add_product($info['name'], $info['description'], $info['category'], $info['image']);
 			}
-			echo "{}";
+			//echo "{}";
+			redirect('/dashboard/products');
 		}else{
 			redirect('/main/admin');
 		}	
@@ -271,6 +257,10 @@ class Dashboard extends CI_Controller {
 		}else{
 			redirect('/main/admin');
 		}
+	}
+
+	public function delete_product_processs(){
+
 	}
 
 	/* ---------------------------
@@ -294,6 +284,43 @@ class Dashboard extends CI_Controller {
 		$this->session->unset_userdata($userdata);
 		redirect("/main/admin");
 	}
+
+	/* ---------------------------
+	 *  Helper functions
+	 */
+
+	private function process_product($id){
+		$array = false;
+		if($this->input->post()){
+			$array = array(
+				'id' => $id, 
+				'name' => $this->input->post('name'), 
+				'description' => $this->input->post('description'), 
+				'category' => $this->input->post('category'), 
+				'image' => $this->process_image()
+				);
+			if($this->input->post('new-category')){
+				$array['category'] = $this->input->post('new-category');
+			}
+		}
+		return $array;
+	}
+
+	private function process_image(){
+		$image = null;
+		if(!empty($_FILES['image']) 
+				&& $_FILES['image']['size'] <= 5*1024*1024
+				&& ( strcmp($_FILES['image']['type'], "image/jpg") === 0
+					|| strcmp($_FILES['image']['type'], "image/png") === 0 
+					|| strcmp($_FILES['image']['type'], "image/jpeg") === 0
+					|| strcmp($_FILES['image']['type'], "image/gif") === 0 )
+			){
+			$image = $_FILES['image']['name'];
+			move_uploaded_file($_FILES['image']['tmp_name'], './assets/images/'.$_FILES['image']['name']);	
+		}
+		return $image;
+	}
+
 }
 
 //end of main controller

@@ -31,7 +31,12 @@
             </div>
             <div class="col-md-7">
               <select class="form-control" name="categories">
-                <option>option</option>
+                <?php if(!empty($categories)){
+                  foreach($categories as $category){?>
+                    <option><?=$category['category']?></option>
+                    <?php
+                  }
+                }?>
               </select>
             </div>
           </div>
