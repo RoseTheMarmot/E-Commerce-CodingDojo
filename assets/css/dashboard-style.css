@@ -78,6 +78,12 @@ table.bordered {
 	table.bordered tr:nth-child(odd){
 		background-color: #eee;
 	}
+	table.bordered img {
+		max-width: 150px;
+	}
+	table.bordered .delete-product{
+		float: right;
+	}
 table.outlined{
 	width: 100%;
 	border: 1px solid #888;
@@ -148,6 +154,7 @@ div.outlined{
     box-shadow:0 0 5px #ccc;
     -moz-box-shadow:0 0 5px #ccc;
     -webkit-box-shadow:0 0 5px #ccc;
+    overflow: scroll;
 }
 .lightbox-item label {
 	float: right;
@@ -157,5 +164,8 @@ div.outlined{
 }
 .lightbox-item .buttons {
 	margin-top: 50px;
+}
+.lightbox-item img {
+	max-width: 50px;
 }
 

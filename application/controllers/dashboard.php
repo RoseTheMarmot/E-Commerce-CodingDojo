@@ -175,6 +175,38 @@ class Dashboard extends CI_Controller {
 		$this->load->view('dashboard/edit-product-view', array('product' => $product));
 	}
 
+	public function edit_product_process($id){
+		if($this->input->post()){
+			$name = $this->input->post('name');
+			$description = $this->input->post('description');
+
+			$this->load->model('dashboard_model');
+			$this->dashboard_model->update_product($id, $name, $description);
+		}
+		echo "{}";	
+	}
+
+	public function add_product(){
+		$this->load->view('dashboard/add-product-view');
+	}
+
+	public function add_product_process(){
+		if($this->input->post()){
+			$name = $this->input->post('name');
+			$description = $this->input->post('description');
+
+			$this->load->model('dashboard_model');
+			$this->dashboard_model->add_product($name, $description);
+		}
+		echo "{}";
+	}
+
+	public function delete_product($id){
+		$this->load->model('dashboard_model');
+		$this->dashboard_model->delete_product($id);
+		echo "{}";
+	}
+
 	/* ---------------------------
 	 *  JSON products API
 	 */

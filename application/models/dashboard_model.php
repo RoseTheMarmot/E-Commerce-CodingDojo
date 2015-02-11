@@ -175,10 +175,11 @@ class Dashboard_model extends CI_Model {
 			    products.id,
 			    products.name,
 			    products.inventory,
+			    products.image,
 			    SUM(relationships.quantity) AS sold
 			FROM
 			    products
-			        JOIN
+			        LEFT JOIN
 			    relationships ON relationships.products_id = products.id
 			GROUP BY products.id
 			ORDER BY products.id ASC";
@@ -196,10 +197,11 @@ class Dashboard_model extends CI_Model {
 			    products.id,
 			    products.name,
 			    products.inventory,
+			    products.image,
 			    SUM(relationships.quantity) AS sold
 			FROM
 			    products
-			        JOIN
+			        LEFT JOIN
 			    relationships ON relationships.products_id = products.id
 			WHERE
 			    products.id LIKE '%".$filter."%'
@@ -208,5 +210,21 @@ class Dashboard_model extends CI_Model {
 			GROUP BY products.id
 			ORDER BY products.id ASC";
 		return $this->db->query($query)->result_array();
+	}
+
+	function update_product($id, $name, $description){
+		$query = "UPDATE products SET name = ?, description = ?, updated_at = NOW() WHERE id = ?";
+		return $this->db->query($query, array($name, $description, $id));
+	}
+
+	function add_product($name, $description){
+		$query = "INSERT INTO products (name, description, added_at, updated_at) VALUES (?, ?, NOW(), NOW())";
+		$this->db->query($query, array($name, $description));
+		return $this->db->insert_id();
+	}
+
+	function delete_product($id){
+		$query = "DELETE from products Where id = ?";
+		return $this->db->query($query, array($id));
 	}
 }

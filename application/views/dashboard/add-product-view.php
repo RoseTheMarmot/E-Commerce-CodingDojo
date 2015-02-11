@@ -1,32 +1,18 @@
 
-  <?php 
-  if(empty($product['id'])){
-    $product['id'] = "";
-  }
-  if(empty($product['name'])){
-    $product['name'] = "";
-  }
-  if(empty($product['description'])){
-    $product['description'] = "";
-  }
-  if(empty($product['picture'])){
-    $product['picture'] = "";
-  }
-  ?>
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container lightbox-item">
     <div class="row">
       <div class="col-md-12">
-        <h3>Edit Product - ID <?=$product['id']?></h3>
-        <form method="post" action="/dashboard/edit_product_process/<?=$product['id']?>">
+        <h3>Add Product</h3>
+        <form method="post" action="/dashboard/add_product_process">
           
           <div class="row">
             <div class="col-md-5">
               <label>Name</label>
             </div>
             <div class="col-md-7">
-              <input type="text" name="name" value="<?=$product['name']?>">
+              <input type="text" name="name">
             </div>
           </div>
 
@@ -35,7 +21,7 @@
                <label>Description</label>
             </div>
             <div class="col-md-7">
-              <textarea name="description"><?=$product['description']?></textarea>
+              <textarea name="description"></textarea>
             </div>
           </div>
           
@@ -65,7 +51,6 @@
             </div>
             <div class="col-md-7">
               <button class="btn btn-default">Upload</button>
-              <img src="/assets/images/<?=$product['picture']?>" alt="<?=$product['picture']?>">
             </div>
           </div>
         </form>
@@ -76,7 +61,7 @@
           <div class="col-md-6">
             <button class="btn btn-default" id="cancel-edit-product">Cancel</button>
             <button class="btn btn-success" id="preview-edit-product">Preview</button>
-            <button class="btn btn-primary" id="update-edit-product">Update</button>
+            <button class="btn btn-primary" id="update-edit-product">Add</button>
           </div>
         </div>
 

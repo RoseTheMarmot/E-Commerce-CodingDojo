@@ -15,7 +15,7 @@
 
       </div>
       <div class="col-md-3">
-        <a href="/"><button id="add-product-button" class="btn btn-primary">Add new product</button></a>
+        <button id="add-product-button" class="btn btn-primary">Add new product</button>
       </div>
     </div>
     <div class="row">
