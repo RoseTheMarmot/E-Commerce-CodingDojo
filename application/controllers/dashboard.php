@@ -302,6 +302,9 @@ class Dashboard extends CI_Controller {
 			if($this->input->post('new-category')){
 				$array['category'] = $this->input->post('new-category');
 			}
+			if($this->input->post('image-title')){
+				$array['image'] = $this->input->post('image-title');
+			}
 		}
 		return $array;
 	}
