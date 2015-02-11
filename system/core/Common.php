@@ -254,12 +254,8 @@ if ( ! function_exists('get_config'))
 			}
 		}
 
-<<<<<<< HEAD
 		$_config[0] =& $config;
 		return $_config[0];
-=======
-		return $_config[0] =& $config;
->>>>>>> 3fe69167879938905b3c83cece84913c63ef53ad
 	}
 }
 

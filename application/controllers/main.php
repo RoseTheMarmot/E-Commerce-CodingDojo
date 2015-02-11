@@ -67,6 +67,16 @@ class Main extends CI_Controller {
 			$add_customer = $this->cart_model->add_customer($customer_details);
 		}
 	}
+
+	public function home()
+	{
+		$this->load->view("homepage");
+	}
+
+	public function merch()
+	{
+		$this->load->view("merch");
+	}
 }
 
 //end of main controller

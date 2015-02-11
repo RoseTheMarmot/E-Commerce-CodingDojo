@@ -5,5 +5,11 @@ $route['404_override'] = '';
 $route['carts'] = "main/carts";
 $route['pay'] = "main/pay";
 
+//Alex
+$route['view/merch/(:num)'] = "main/merch_page/$1";
+$route['views/homepage'] = "main/select_category";
+
 
 //end of routes.php
+
+
