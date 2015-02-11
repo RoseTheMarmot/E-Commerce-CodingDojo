@@ -2,6 +2,7 @@
 
 class Main extends CI_Controller {
 
+<<<<<<< HEAD
 	public function carts()
 	{
 		$this->load->view("carts");
@@ -66,6 +67,17 @@ class Main extends CI_Controller {
 		{
 			$add_customer = $this->cart_model->add_customer($customer_details);
 		}
+=======
+	public function __construct()
+	{
+		parent::__construct();
+		$this->output->enable_profiler();
+	}
+
+	public function index()
+	{
+		echo "Welcome to CodeIgniter. The default Controller is Main.php";
+>>>>>>> 3fe69167879938905b3c83cece84913c63ef53ad
 	}
 }
 
