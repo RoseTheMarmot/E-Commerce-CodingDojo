@@ -2,6 +2,12 @@
 
 class Category_model extends CI_Model {
 
+	public function __construct()
+	{
+		parent::__construct();
+		// $this->output->enable_profiler();
+	}
+
 	public function show_all_merch()
 	{
 		$query = "SELECT category FROM products GROUP BY category DESC";
@@ -14,6 +20,7 @@ class Category_model extends CI_Model {
 		$results = $this->db->query($query, array($category))->result_array();
 		return $results;
 	}
+
 }
 
-//end of category model
+//end of routes.php

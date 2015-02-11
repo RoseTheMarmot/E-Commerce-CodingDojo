@@ -196,25 +196,22 @@ class Dashboard extends CI_Controller {
 		if($this->session->userdata('is_admin') === true){ //check if admin
 			$this->load->model('dashboard_model');
 			$product = $this->dashboard_model->get_product_by_id($id);
-			$categories = $this->dashboard_model->get_product_categories();
-			$this->load->view('dashboard/edit-product-view', array('product' => $product, 'categories' => $categories));
+			$this->load->view('dashboard/edit-product-view', array('product' => $product));
 		}else{
 			redirect('/main/admin');
 		}
 	}
 
-	/* ---------------------------
-	 *  Process product edit
-	 */
 	public function edit_product_process($id){
 		if($this->session->userdata('is_admin') === true){ //check if admin
-			$info = $this->process_product($id);
-			if($info){
+			if($this->input->post()){
+				$name = $this->input->post('name');
+				$description = $this->input->post('description');
+
 				$this->load->model('dashboard_model');
-				$this->dashboard_model->update_product($info['id'], $info['name'], $info['description'], $info['category'], $info['image']);
+				$this->dashboard_model->update_product($id, $name, $description);
 			}
-			//echo "{}";
-			redirect('/dashboard/products');
+			echo "{}";
 		}else{
 			redirect('/main/admin');
 		}		
@@ -225,9 +222,7 @@ class Dashboard extends CI_Controller {
 	 */
 	public function add_product(){
 		if($this->session->userdata('is_admin') === true){ //check if admin
-			$this->load->model('dashboard_model');
-			$categories = $this->dashboard_model->get_product_categories();
-			$this->load->view('dashboard/add-product-view', array('categories' => $categories));
+			$this->load->view('dashboard/add-product-view');
 		}else{
 			redirect('/main/admin');
 		}
@@ -239,13 +234,14 @@ class Dashboard extends CI_Controller {
 	 */
 	public function add_product_process(){
 		if($this->session->userdata('is_admin') === true){ //check if admin
-			$info = $this->process_product(0);
-			if($info){
+			if($this->input->post()){
+				$name = $this->input->post('name');
+				$description = $this->input->post('description');
+
 				$this->load->model('dashboard_model');
-				$this->dashboard_model->add_product($info['name'], $info['description'], $info['category'], $info['image']);
+				$this->dashboard_model->add_product($name, $description);
 			}
-			//echo "{}";
-			redirect('/dashboard/products');
+			echo "{}";
 		}else{
 			redirect('/main/admin');
 		}	
@@ -262,10 +258,6 @@ class Dashboard extends CI_Controller {
 		}else{
 			redirect('/main/admin');
 		}
-	}
-
-	public function delete_product_processs(){
-
 	}
 
 	/* ---------------------------
@@ -289,6 +281,7 @@ class Dashboard extends CI_Controller {
 		$this->session->unset_userdata($userdata);
 		redirect("/main");
 	}
+<<<<<<< HEAD
 
 
 	/* ---------------------------
@@ -328,6 +321,8 @@ class Dashboard extends CI_Controller {
 		return $image;
 	}
 
+=======
+>>>>>>> 02946e270d57bc2e389f79789df53f304d345592
 }
 
 //end of main controller
