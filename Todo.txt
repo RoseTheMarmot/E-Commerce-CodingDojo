@@ -1,0 +1,9 @@
+TODO:
+
+Admin Area:
+- edit queries for in the dashboard controller (for the search bar) so that you can search on sum sql fields
+- finish the image uploading code for editing products
+
+Database:
+- restructure addresses so that shipping can have a different name
+- restructure images into own table

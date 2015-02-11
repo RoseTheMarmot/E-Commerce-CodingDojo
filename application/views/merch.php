@@ -21,70 +21,8 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <style>
-  *{
-    padding: 0px;
-    margin: 0px;
-  }
-
-  #container{
-    margin-bottom: 50px;
-  }
-  #header{
-    background-color: black;
-    color: white; 
-  }
-    #header a{
-      color: white;
-    }
-    #header h1, #header button{
-      display: inline-block;
-      vertical-align: top;
-    }
-    #header button{
-      margin-top: 22px;
-    }
-div.row{
-  width: 1075px;
-  margin: 0 auto;
-}
-
-#preview{
-  margin-left: 30px;
-}
-  #preview h1{
-    text-align: center;
-  }
-  #preview button{
-    margin-top: 5px;
-  }
-  #preview .merch{
-    width: 24%;
-    display:inline-block;
-  }
-
-
-
-
-#description h4{
-  margin-top: 45px;
-}
-
-
-#controls button{
-  margin-right: 10px;
-}
-
-
-
-
-
-  #footer p{
-    text-align: center;
-  }
-
-  </style>
+  <link rel="stylesheet" href="/assets/css/merch_style.css">
+  <link rel="stylesheet" href="/assets/css/header_style.css">
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -97,10 +35,19 @@ div.row{
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div id="container">
     <div id="header" class='col-md-12'>
-      <a href="/"><h1>Dojo eCommerce</h1></a>
-      <button type="button" class="btn btn-info pull-right">
-        <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart (nth)
-      </button>
+      <a href="/">
+        <h1>Dojo eCommerce</h1>
+      </a>
+      <a href="/main/carts">
+        <button type="button" class="btn btn-info pull-right">
+          <?php 
+          $cart_qty = "";
+          if($this->session->userdata('cart_qty')){
+            $cart_qty = "(".$this->session->userdata('cart_qty').")";
+          }?>
+          <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <?=$cart_qty?>
+        </button>
+      </a>
     </div>
 
 
@@ -116,7 +63,7 @@ div.row{
         </a>
 
         <h1><?= $results['name'];?></h1>
-        <img src="/assets/<?=$results['image'];?>" class="img-thumbnail">
+        <img src="/assets/images<?=$results['image'];?>" class="img-thumbnail">
 
 
         
@@ -176,7 +123,7 @@ div.row{
         <a href="/view/merch/<?=$item['id']?>" class="<?=$item['category'];?>">
           <div class='merch col-md-2'>
             <p><?=$item['name'];?></p>
-            <img src="/assets/<?=$item['image'];?>" alt="..." class="img-thumbnail">
+            <img src="/assets/images<?=$item['image'];?>" alt="..." class="img-thumbnail">
             <p><?=$item['price'];?></p>
           </div>
          </a>

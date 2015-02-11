@@ -4,12 +4,8 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata('is_admin') === true){
-			redirect('/dashboard/orders');
-		}else{
-			//redirect to admin login
-			redirect('/main/admin');
-		}
+		//redirect to admin login
+		redirect('/main/admin');
 	}
 
 	/* ---------------------------
@@ -51,7 +47,6 @@ class Dashboard extends CI_Controller {
 			$this->load->view('dashboard/nav-dashboard', array('current' => 'orders'));
 			$this->load->view('dashboard/orders-view');
 		}else{
-			//redirect to admin login
 			redirect('/main/admin');
 		}	
 	}
@@ -279,50 +274,8 @@ class Dashboard extends CI_Controller {
 	public function logoff(){
 		$userdata = $this->session->all_userdata();
 		$this->session->unset_userdata($userdata);
-		redirect("/main");
+		redirect("/main/admin");
 	}
-<<<<<<< HEAD
-
-
-	/* ---------------------------
-	 *  Helper functions
-	 */
-	private function process_product($id){
-		$array = false;
-		if($this->input->post()){
-			$array = array(
-				'id' => $id, 
-				'name' => $this->input->post('name'), 
-				'description' => $this->input->post('description'), 
-				'category' => $this->input->post('category'), 
-				'image' => $this->process_image()
-				);
-			if($this->input->post('new-category')){
-				$array['category'] = $this->input->post('new-category');
-			}
-			if($this->input->post('image-title')){
-				$array['image'] = $this->input->post('image-title');
-			}
-		}
-		return $array;
-	}
-	private function process_image(){
-		$image = null;
-		if(!empty($_FILES['image']) 
-				&& $_FILES['image']['size'] <= 5*1024*1024
-				&& ( strcmp($_FILES['image']['type'], "image/jpg") === 0
-					|| strcmp($_FILES['image']['type'], "image/png") === 0 
-					|| strcmp($_FILES['image']['type'], "image/jpeg") === 0
-					|| strcmp($_FILES['image']['type'], "image/gif") === 0 )
-			){
-			$image = $_FILES['image']['name'];
-			move_uploaded_file($_FILES['image']['tmp_name'], './assets/images/'.$_FILES['image']['name']);	
-		}
-		return $image;
-	}
-
-=======
->>>>>>> 02946e270d57bc2e389f79789df53f304d345592
 }
 
 //end of main controller
