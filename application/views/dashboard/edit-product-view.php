@@ -19,7 +19,7 @@
     <div class="row">
       <div class="col-md-12">
         <h3>Edit Product - ID <?=$product['id']?></h3>
-        <form method="post" action="/dashboard/edit_product_process/<?=$product['id']?>">
+        <form method="post" action="/dashboard/edit_product_process/<?=$product['id']?>" enctype="multipart/form-data">
           
           <div class="row">
             <div class="col-md-5">
@@ -64,7 +64,8 @@
                <label>Images</label>
             </div>
             <div class="col-md-7">
-              <button class="btn btn-default">Upload</button>
+              <!--<button class="btn btn-default">Upload</button>-->
+              <input type="file" name="image">
               <img src="/assets/images/<?=$product['picture']?>" alt="<?=$product['picture']?>">
             </div>
           </div>
