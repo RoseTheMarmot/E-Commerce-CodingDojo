@@ -191,20 +191,38 @@ class Dashboard extends CI_Controller {
 		if($this->session->userdata('is_admin') === true){ //check if admin
 			$this->load->model('dashboard_model');
 			$product = $this->dashboard_model->get_product_by_id($id);
-			$this->load->view('dashboard/edit-product-view', array('product' => $product));
+			$categories = $this->dashboard_model->get_product_categories();
+			$this->load->view('dashboard/edit-product-view', array('product' => $product, 'categories' => $categories));
 		}else{
 			redirect('/main/admin');
 		}
 	}
 
+	/* ---------------------------
+	 *  Process product edit
+	 */
 	public function edit_product_process($id){
 		if($this->session->userdata('is_admin') === true){ //check if admin
 			if($this->input->post()){
 				$name = $this->input->post('name');
 				$description = $this->input->post('description');
-
+				$category = $this->input->post('category');
+				if($this->input->post('new-category')){
+					$category = $this->input->post('new-category');
+				}
+				$image = null;
+				if(!empty($_FILES['image']) 
+						&& $_FILES['image']['size'] <= 5*1024*1024
+						&& ( strcmp($_FILES['image']['type'], "image/jpg") === 0
+							|| strcmp($_FILES['image']['type'], "image/png") === 0 
+							|| strcmp($_FILES['image']['type'], "image/jpeg") === 0
+							|| strcmp($_FILES['image']['type'], "image/gif") === 0 )
+					){
+					move_uploaded_file($_FILES['image']['tmp_name'], './assets/images/'.$_FILES['image']['name']);
+					$image = $_FILES['image']['name'];
+				}
 				$this->load->model('dashboard_model');
-				$this->dashboard_model->update_product($id, $name, $description);
+				$this->dashboard_model->update_product($id, $name, $description, $category, $image);
 			}
 			echo "{}";
 		}else{

@@ -212,9 +212,23 @@ class Dashboard_model extends CI_Model {
 		return $this->db->query($query)->result_array();
 	}
 
-	function update_product($id, $name, $description){
-		$query = "UPDATE products SET name = ?, description = ?, updated_at = NOW() WHERE id = ?";
-		return $this->db->query($query, array($name, $description, $id));
+	function get_product_categories(){
+		$query = "SELECT category FROM products GROUP BY category";
+		return $this->db->query($query)->result_array();
+	}
+
+	function update_product($id, $name, $description, $category, $image){
+		$query = "UPDATE 
+				products 
+			SET 
+				name = ?, 
+				description = ?, 
+				category = ?, 
+				image = ?,
+				updated_at = NOW() 
+			WHERE 
+				id = ?";
+		return $this->db->query($query, array($name, $description, $category, $image, $id));
 	}
 
 	function add_product($name, $description){

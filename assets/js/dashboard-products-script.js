@@ -62,7 +62,7 @@
 		return false;
 	});
 
-	// --- lightbox product edit box ---
+	// --- lightbox product edit/add box ---
 	$(document).on('click', '.open-lightbox', function(){
 		lightbox.show();
 		$.get(

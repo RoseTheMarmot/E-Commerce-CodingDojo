@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-7">
               <!--<button class="btn btn-default">Upload</button>-->
-              <input type="file" name="image">
+              <input type="file" name="image" id="upload-image">
             </div>
           </div>
         </form>
