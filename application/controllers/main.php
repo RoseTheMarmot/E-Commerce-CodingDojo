@@ -5,7 +5,6 @@ class Main extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		// $this->output->enable_profiler();
 		$this->load->model('product_model');
 		$this->load->model('category_model');
 	}
@@ -33,10 +32,18 @@ class Main extends CI_Controller {
 
 	public function get_merch($name)
 	{
+<<<<<<< HEAD
 		$this->load->model('category_model');
 		$values = $this->category_model->sort_merch($name);
 		$output['values'] = $values;
 		echo json_encode($output);
+=======
+
+	}
+	
+	public function admin(){
+		$this->load->view('admin-login-view');
+>>>>>>> master
 	}
 }
 

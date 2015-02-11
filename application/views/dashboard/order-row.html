@@ -1,0 +1,19 @@
+<tr>
+	<td>
+		<a href="/orders/show/id">id</a>
+	</td>
+	<td>firstName lastName</td>
+	<td>createdAt</td>
+	<td>address address2 city, state zipcode</td>
+	<td>total</td>
+	<td class="status">
+		<form method="post" action="/dashboard/change_order_status/id">
+			<select name="status">
+				<option>Order in progress</option>
+				<option>Shipped</option>
+				<option>Canceled</option>
+			</select>
+		</form>
+	</td>
+</tr>
+

@@ -1,0 +1,25 @@
+*{
+	/*outline: 1px dotted #00ffff;*/
+}
+.admin-login{
+ 	margin-top: 80px;
+}
+.admin-login h1, .admin-login h3, .admin-login h2 {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 40px;
+}
+.admin-login label{
+	width: 30%;
+	margin: 5px 0px;
+	padding-left: 10px;
+}
+.admin-login input{
+	width: 70%;
+	margin: 5px 0px;
+}
+.admin-login input[type*=submit]{
+	width: auto;
+	float: right;
+	margin: 10px 0px;
+}

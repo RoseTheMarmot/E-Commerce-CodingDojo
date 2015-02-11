@@ -5,14 +5,20 @@
 	var addProduct 		= $(	'#add-product-button'	);
 	var productsPages 	= $(	'#products-pagination'	);
 	var productsTable	= $(	'#products-table'		);
+	var lightbox 		= $(	'#lightbox'				);
 
 	//results per page
-	var perPage = 2;
+	var perPage = 10;
 
 	//load table
 	get_products(0);
 
-	//Pagination listeners
+
+	/* ----------------------------
+	 * Page listers and handlers
+	 */
+
+	// --- pagination ---
 	$(document).on('click', '#products-pagination .page', function(){
 		fill_table(($(this).text()-1)*perPage);
 		$(this).addClass('active').siblings().removeClass('active');
@@ -24,13 +30,77 @@
 		page_prev($('.active', productsPages).text());
 	});
 
-	//search bar listener
+	// ---- search bar ----
 	$('input', productsSearch).keyup(function(){
 		productsSearch.submit();
 	});
-	//search bar handler
 	productsSearch.submit(function(){
 		get_products_by_filter(0, productsSearch);
+		return false;
+	});
+
+	// --- add product button --->
+	$('#add-product-button').click(function(){
+		lightbox.show();
+		$.get(
+			'/dashboard/add_product', 
+			function(data){
+				$('#content', lightbox).append(data);
+			}, 
+			'html');
+		return false;
+	});
+
+	//--- delete product ----
+	productsTable.on('click', '.delete-product', function(){
+		console.log($(this).attr('href'));
+		$.get(
+			$(this).attr('href'), 
+			function(data){}, 
+			'json');
+		$(this).parent().parent().remove();
+		return false;
+	});
+
+	// --- lightbox product edit box ---
+	$(document).on('click', '.open-lightbox', function(){
+		lightbox.show();
+		$.get(
+			$(this).attr('href'), 
+			function(data){
+				$('#content', lightbox).append(data);
+			}, 
+			'html');
+		return false;
+	});
+	$(".close", lightbox).click(function(){
+		closeLightbox();
+	});
+
+	// --- lightbox cancel button ----
+	lightbox.on('click', '#cancel-edit-product', function(){
+		closeLightbox();
+		return false;
+	});
+
+	// --- lightbox preview button ----
+	lightbox.on('click', '#preview-edit-product', function(){
+		return false;
+	});
+
+	// --- lightbox update button ----
+	lightbox.on('click', '#update-edit-product', function(){
+		$('form', lightbox).submit();
+	});
+	lightbox.on('submit', 'form', function(){
+		$.post(
+			$(this).attr('action'), 
+			$(this).serialize(), 
+			function(output){
+				closeLightbox();
+				get_products(0);
+			}, 
+			'json');
 		return false;
 	});
 
@@ -81,6 +151,7 @@
 		while(start + i < jsonData.products.length && i < perPage){
 			$('tbody', productsTable).append(row(
 					jsonData.products[start + i].id,
+					jsonData.products[start + i].image,
 					jsonData.products[start + i].name,
 					jsonData.products[start + i].inventory,
 					jsonData.products[start + i].sold
@@ -135,11 +206,19 @@
 		}
 	 }
 
+	 /* ----------------------------
+	 * Closes the lightbox
+	 */
+	 function closeLightbox(){
+	 	lightbox.hide();
+		$('#content', lightbox).empty();
+	 }
+
 	/* -------------------------------------------------------------------------------------------------
 	 * Returns HTML string for an product row in the products table
 	 */
-	function row(id, name, inventory, sold){
-		return '<tr><td>X</td><td>'+id+'</td><td>'+name+'</td><td>'+inventory+'</td><td>'+sold+'</td><td><a href="/dashboard/edit_product/'+id+'">edit</a> <a href="/dashboard/delete_product/'+id+'">delete</a></td></tr>';
+	function row(id, image, name, inventory, sold){
+		return '<tr><td><img src="/assets/images/'+image+'" alt="'+image+'"></td><td>'+id+'</td><td>'+name+'</td><td>'+inventory+'</td><td>'+sold+'</td><td><a class="open-lightbox" href="/dashboard/edit_product/'+id+'">edit</a> <a class="delete-product" href="/dashboard/delete_product/'+id+'">delete</a></td></tr>';
 	}
 
 })(jQuery);

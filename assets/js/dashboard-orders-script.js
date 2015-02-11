@@ -7,7 +7,7 @@
 	var ordersTable		= $(	'#orders-table'			);
 
 	//results per page
-	var perPage = 2;
+	var perPage = 10;
 
 	//load table
 	get_orders(0);
@@ -26,7 +26,7 @@
 
 	//filter orders listener
 	$('select', ordersFilter).change(function(){
-		if($(this).val() == "Show All"){
+		if($(this).val() == "show all"){
 			get_orders(0);
 		}else{
 			ordersFilter.submit();
@@ -48,6 +48,22 @@
 		return false;
 	});
 
+	//table form listener
+	$(document).on('change', '#orders-table form select', function(){
+		$(this).parent().submit();
+	});
+	$(document).on('submit', '#orders-table form', function(){
+		//console.log($(this).attr('action'));
+		//console.log($(this).serialize);
+		$.post(
+			$(this).attr('action'), 
+			$(this).serialize(), 
+			function(output){}, 
+			'json'
+		);
+		return false;
+	});
+
 	/* ----------------------------
 	 * Gets JSON data for orders, displaying n (n = perPage) orders,
 	 * starting from the index, start.
@@ -57,7 +73,6 @@
 		$.get(
 			'/dashboard/get_orders', 
 			function(data){
-				//console.log(data);
 				jsonData = data;
 				fill_table(start);
 				load_pagination(data.orders.length);
@@ -70,12 +85,11 @@
 	 * orders filter menu. Displays n (n = perPage) orders,
 	 * starting from the index, start.
 	 */
-	function get_orders_by_filter(start, filter_form){
+	function get_orders_by_filter(start, filter_form){;
 		$.post(
 			filter_form.attr('action'), 
 			filter_form.serialize(), 
 			function(output){
-				//console.log(output);
 				jsonData = output;
 				fill_table(0);
 				load_pagination(jsonData.orders.length);
@@ -93,21 +107,50 @@
 		$('tbody', ordersTable).empty();
 		var i = 0;
 		while(start + i < jsonData.orders.length && i < perPage){
-			$('tbody', ordersTable).append(order_row(
-					jsonData.orders[start + i].id,
-					jsonData.orders[start + i].first_name,
-					jsonData.orders[start + i].last_name,
-					jsonData.orders[start + i].created_at,
-					jsonData.orders[start + i].address,
-					jsonData.orders[start + i].address2,
-					jsonData.orders[start + i].city,
-					jsonData.orders[start + i].state,
-					jsonData.orders[start + i].total,
-					jsonData.orders[start + i].status
+			$('tbody', ordersTable).append(row(
+					jsonData.orders[start+i].id,
+					jsonData.orders[start+i].first_name,
+					jsonData.orders[start+i].last_name,
+					jsonData.orders[start+i].created_at,
+					jsonData.orders[start+i].address,
+					jsonData.orders[start+i].address2,
+					jsonData.orders[start+i].city,
+					jsonData.orders[start+i].state,
+					jsonData.orders[start+i].zipcode,
+					jsonData.orders[start+i].total,
+					jsonData.orders[start+i].status
 				));
 			i++;
 		}
 	}
+	//post version, doesn't work as well
+	/*
+	function fill_table(start){
+		$('tbody', ordersTable).empty();
+		var i = 0;
+		while(start + i < jsonData.orders.length && i < perPage){
+			$('tbody', ordersTable).append('<tr id="row-'+i+'"></tr>');
+			i++;
+		}
+		var j = 0;
+		while(start + j < jsonData.orders.length && j < perPage){ 
+			//console.log(j);
+			var rowReplace = $('#row-'+j, ordersTable);
+			//console.log(rowReplace);
+			$.post(
+				'/dashboard/order_rows', 
+				jsonData.orders[start + j], 
+				function(output){
+					var id = $(output).attr('id');
+					var toReplace = $("#"+id, ordersTable);
+					$("#"+id, ordersTable).replaceWith(output);
+				}, 
+				'html'
+			);
+			j++;
+		}
+	}	
+	*/
 
 	/* ----------------------------
 	 * Loads orders pagination, given the length of the JSON array
@@ -153,11 +196,20 @@
 		}
 	 }
 
-	/* -------------------------------------------------------------------------------------------------
-	 * Returns HTML string for an order row in the orders table
+	 /* ----------------------------
+	 * Returns and html row for the table
 	 */
-	function order_row(id, firstName, lastName, createdAt, address, address2, city, state, total, status){
-		return '<tr><td>'+id+'</td><td>'+firstName+' '+lastName+'</td><td>'+createdAt+'</td><td>'+address+' '+address2+' '+city+', '+state+'</td><td>'+total+'</td><td>'+status+'</td></tr>';
-	}
+	 function row(id, first_name, last_name, created_at, address, address2, city, state, zipcode, total, status){
+	 	$.get(
+	 		'/dashboard/order_status_select/'+status+'/'+id, 
+	 		function(data){
+	 			$('#row-'+id+' .status').append(data);
+	 		}, 
+	 		'html');
+	 	return '<tr id="row-'+id+'"><td><a href="/orders/show/'+id+'">'+id+'</a></td><td>'+first_name+' '+last_name+'</td><td>'+created_at+'</td><td>'+address+' '+address2+' '+city+', '+state+' '+zipcode+'</td><td>'+total+'</td><td class="status"></td></tr>';
+	 }
 
 })(jQuery);
+
+
+
