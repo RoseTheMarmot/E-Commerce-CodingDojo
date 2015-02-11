@@ -2,7 +2,7 @@
 
 class Main extends CI_Controller {
 
-	public function index()
+	public function carts()
 	{
 		$this->load->view("carts");
 	}
@@ -28,12 +28,6 @@ class Main extends CI_Controller {
 			$this->form_validation->run();
 		}
 
-
-
-		//shipping:
-		// $first_name = $this->input->post('first_name');
-		// $last_name = $this->input->post('last_name');
-
 		// for addresses
 		$address = $this->input->post('address');
 		$address_2 = $this->input->post('address_2');
@@ -44,20 +38,6 @@ class Main extends CI_Controller {
 		//for customers
 		$first_name = $this->input->post('first_name');
 		$last_name = $this->input->post('last_name');
-
-		//biling:
-		// $billing_first_name = $this->input->post('billing_first_name');
-		// $billing_last_name = $this->input->post('billing_last_name');
-		// $billing_address = $this->input->post('address');
-		// $billing_address_2 = $this->input->post('address_2');
-		// $billing_city = $this->input->post('billing_city');
-		// $billing_state = $this->input->post('billing_state');
-		// $billing_zipcode = $this->input->post('billing_zipcode');
-		// $billing_card = $this->input->post('billing_card');
-		// $billing_security_code = $this->input->post('billing_security_code');
-
-
-
 
 		// to use model:
 		$this->load->model('cart_model');
@@ -70,32 +50,23 @@ class Main extends CI_Controller {
 							"zipcode" => $zipcode, 
 							"first_name" => $first_name,
 							"last_name" => $last_name
-							// "billing_first_name" => $billing_first_name,
-							// "billing_last_name" => $billing_last_name,
-							// "billing_address" => $billing_address,
-							// "billing_address_2" => $billing_address_2,
-							// "billing_city" => $billing_city,
-							// "billing_state" => $billing_state,
-							// "billing_zipcode" => $billing_zipcode
+							
 		);
-		// var_dump($customer_details);
-
-		// check for duplicate users
-		// if ($customers.first_name == TRUE && $customers.last_name == TRUE)
-		// {
-		// 	// dont add/duplicate customer data into the db
-		// }
-		// else 
-		// {
-		// 	$add_customer = $this->cart_model->add_customer($customer_details);
-		// }
-
-
-
+		
 		// this line below adds my customer data of input into the db
-		$add_customer = $this->cart_model->add_customer($customer_details);
+		// $add_customer = $this->cart_model->add_customer($customer_details);
+		$query = mysql_query("SELECT first_name AND last_name 
+							  FROM customers 
+							  WHERE first_name = '$first_name' AND last_name = '$last_name'");
+		if(mysql_num_rows($query) != 0)
+		{
+			echo "Name already exists";
+		}
+		else 
+		{
+			$add_customer = $this->cart_model->add_customer($customer_details);
+		}
 	}
-
 }
 
 //end of main controller

@@ -60,7 +60,7 @@
               <td>Black Belt for Staff</td>
               <td>$19.99</td>
               <td id="qty">
-                <form action="/products/edit_qty" method="post">
+                <form action="/carts" method="post">
                   <input type="number" name="qty" value="1">
                   <input id="update" type="submit" value="update">  
                   <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
@@ -79,11 +79,11 @@
             <td><p id='total'>Order Total:<!--  $<?=$grand_total?> --></p></td>
           </tr>
           <tr>
-            <td><a href="/"><button type="button" class="btn btn-warning navbar-btn red-btn">Go Back</button></a></td>
+            <td><a href="/products/show"><button type="button" class="btn btn-warning navbar-btn red-btn">Go Back</button></a></td>
           </tr>
             <br>
           <tr>
-            <td><a href="/"><button type="button" class="btn btn-success navbar-btn green-btn">Continue Shopping</button></a></td>
+            <td><a href="/products/category"><button type="button" class="btn btn-success navbar-btn green-btn">Continue Shopping</button></a></td>
           </tr>  
         </table>
 
@@ -141,7 +141,7 @@
             </tr>
           </table>
        
-          <br>
+ <!--          <br>
 
           <h4>Billing Information</h4>
           <table id="billing">
@@ -183,7 +183,7 @@
             <tr>
               <td><h5 class="form-descriptions">Zipcode:</h5></td>
               <td><input type="text" name="billing_zipcode" class="form-area2"></td>
-            </tr>
+            </tr> -->
 
 <!--             <tr>
               <td><h5 class="form-descriptions">Card:</h5></td>

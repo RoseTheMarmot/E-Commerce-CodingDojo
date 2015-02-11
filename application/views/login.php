@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>(Cart Page) Shopping Cart | Dojo eCommerce</title>
+  <title>(Cart Page) Shopping Cart | Dojo eCommerce Reference</title>
   <!-- <link rel="stylesheet" type="text/css" href="_____.css"> -->
   <!-- <style type="text/css"></style> -->
   <!-- <link rel="icon" href=".icon"> -->
@@ -9,7 +9,7 @@
   <meta name="description" content="coding dojo assignment">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="author" content="Arthur">
+  <meta name="author" content="Tim">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
   <!-- <link rel="stylesheet" type="text/css" href="scripts/bootstrap/css/bootstrap.min.css"> -->
