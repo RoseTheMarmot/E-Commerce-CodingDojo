@@ -118,31 +118,56 @@
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div id="container">
+
+
+   <!-- START OF HEADER
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
     <div id="header" class='col-md-12'>
       <h1>Dojo eCommerce</h1>
       <button type="button" class="btn btn-info pull-right">
         <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart (nth)
       </button>
     </div>
+
+ <!-- END OF HEADER // START OF LEFT SIDE MENU
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
     <div id='menu' class='col-md-4'>
+
+ <!-- SEARCH BAR
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
       <div class='row col-md-9'>
         <input type="text" class="form-control" placeholder="Search">
       </div>
+
+   <!-- SEARCH BUTTON
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
       <div class='row col-md-4'>
         <button type='button' class='btn btn-info'>
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
         </button>
       </div>
+
+ <!-- CATERGORY SEARCH AREA
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
       <ul><p>Categories</p>
-        <li><a href="#">Shirts (nth)</a></li>
-        <li><a href="#">Hoodies (nth)</a></li>
-        <li><a href="#">Hats/Beanies (nth)</a></li>
-        <li><a href="#">Cups/Mugs (nth)</a></li>
-        <li><a href="#">Show All</a></li>
+<?php   foreach($categories as $category)
+        { ?>
+        <li><a href="/main/homepage/<?=$category['category']?>"><?=$category['category']?></a></li>
+<?php   }; ?>
+        <li><a href="/">Show All</a></li>
       </ul>
     </div>
+
+     <!-- END OF LEFT SIDE MENU // START OF RIGHT SIDE BODY
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
     <div id='body' class='col-md-7'>
-      <h1>Shirts (page nth)</h1> 
+      <h1><?=$category['category']?> (page nth)</h1>   <!-- NEED TO DYNAMICALLY CHANGE PAGE COUNT -->
       <nav class='pull-right'>
         <ul class="pagination">
             <li>
@@ -150,6 +175,8 @@
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
+   <!-- NEED TO MAKE THIS PAGINATION DYNAMIC
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
             <li><a href="#">First</a></li>
             <li><a href="#">Prev</a></li>
             <li><a href="#">nth</a></li>
@@ -162,6 +189,9 @@
           </li>
         </ul>
       </nav>
+
+ <!-- NEED TO MAKE THIS DROP DOWN DYNAMIC
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle pull-right" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">Search By<span class="caret"></span></button>
         <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
@@ -180,7 +210,7 @@
 
 <?php
   foreach($results as $result)
-  { ?>   <a href="view/merch/<?=$result['id']?>" class="<?=$result['type']?>">
+  { ?>   <a href="view/merch/<?=$result['id']?>" class="<?=$result['category']?>">
           <div class='merch col-md-3'>
             <p><?=$result['name']?></p>
             <img src="/assets/<?=$result['image']?>" alt="..." class="img-thumbnail">
@@ -203,6 +233,8 @@
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
+ <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
             <li><a href="#">1</a></li>
             <li><a href="#">2</a></li>
             <li><a href="#">3</a></li>

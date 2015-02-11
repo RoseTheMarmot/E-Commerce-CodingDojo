@@ -6,22 +6,30 @@ class Main extends CI_Controller {
 	{
 		parent::__construct();
 		// $this->output->enable_profiler();
+		$this->load->model('product_model');
+		$this->load->model('category_model');
 	}
 
 	public function index()
-	{
-		$query = "SELECT * FROM products";
-		$results = $this->db->query($query)->result_array();
-		$this->load->view('homepage', array("results" => $results));
+	{	
+		$category = $this->category_model->show_all_merch();
+		$results = $this->product_model->show_all_merch();
+		$this->load->view('homepage', array("results" => $results, 'categories' => $category));
 	}
 
 	public function merch_page($id)
 	{
-		$this->load->model('product_model');
 		$results = $this->product_model->get_one_merch($id);
 		$items = $this->product_model->show_all_merch();
 		$this->load->view('merch', array("results" => $results, "items" => $items));
 	}
+
+	public function homepage($category)
+	{
+		$items = $this->category_model->sort_merch($category);
+	}
+
+
 }
 
 //end of main controller

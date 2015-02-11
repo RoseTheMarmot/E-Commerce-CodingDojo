@@ -173,7 +173,7 @@ div.row{
     <h4>Similar Items:</h4>
 <?php foreach($items as $item)
       { ?>
-        <a href="/view/merch/<?=$item['id']?>" class="<?=$item['type'];?>">
+        <a href="/view/merch/<?=$item['id']?>" class="<?=$item['category'];?>">
           <div class='merch col-md-2'>
             <p><?=$item['name'];?></p>
             <img src="/assets/<?=$item['image'];?>" alt="..." class="img-thumbnail">

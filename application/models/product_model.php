@@ -11,15 +11,14 @@ class Product_model extends CI_Model {
 	public function show_all_merch()
 	{
 		$query = "SELECT * FROM products";
-		$results = $this->db->query($query)->result_array();
-		return $results;
+		return $this->db->query($query)->result_array();
 	}
 
 
 	public function get_one_merch($id)
 	{
 		$query = "SELECT * FROM products WHERE id = ?";
-		$results = $this->db->query($query, array($id))->row_array();
-		return $results;
+		return $this->db->query($query, array($id))->row_array();
 	}
+
 }
