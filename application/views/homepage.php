@@ -158,7 +158,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
     <div id='body' class='col-md-7'>
-      <h1><?=$category['category']?> (page nth)</h1>   <!-- NEED TO DYNAMICALLY CHANGE PAGE COUNT -->
+      <h1>All Products (page nth)</h1>   <!-- NEED TO DYNAMICALLY CHANGE PAGE COUNT -->
       <nav class='pull-right'>
         <ul class="pagination">
             <li>

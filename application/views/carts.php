@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>carts</title>
+  <title>Cart</title>
   <meta name="description" content="">
   <meta name="author" content="">
 

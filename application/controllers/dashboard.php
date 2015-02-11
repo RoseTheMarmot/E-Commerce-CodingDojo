@@ -4,8 +4,12 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		//redirect to admin login
-		redirect('/main/admin');
+		if($this->session->userdata('is_admin') === true){
+			redirect('/dashboard/orders');
+		}else{
+			//redirect to admin login
+			redirect('/main/admin');
+		}
 	}
 
 	/* ---------------------------
@@ -47,6 +51,7 @@ class Dashboard extends CI_Controller {
 			$this->load->view('dashboard/nav-dashboard', array('current' => 'orders'));
 			$this->load->view('dashboard/orders-view');
 		}else{
+			//redirect to admin login
 			redirect('/main/admin');
 		}	
 	}
@@ -282,13 +287,13 @@ class Dashboard extends CI_Controller {
 	public function logoff(){
 		$userdata = $this->session->all_userdata();
 		$this->session->unset_userdata($userdata);
-		redirect("/main/admin");
+		redirect("/main");
 	}
+
 
 	/* ---------------------------
 	 *  Helper functions
 	 */
-
 	private function process_product($id){
 		$array = false;
 		if($this->input->post()){
@@ -308,7 +313,6 @@ class Dashboard extends CI_Controller {
 		}
 		return $array;
 	}
-
 	private function process_image(){
 		$image = null;
 		if(!empty($_FILES['image']) 
