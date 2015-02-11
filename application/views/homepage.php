@@ -27,9 +27,11 @@
     padding: 0px;
     margin: 0px;
   }
-  #header{
+  div#header{
     background-color: black;
-    color: white; 
+    color: white;
+    overflow: hidden; 
+    height: auto;
   }
     #header h1, #header button{
       display: inline-block;
@@ -112,9 +114,11 @@
 
     <div id="header" class='col-md-12'>
       <h1>Dojo eCommerce</h1>
-      <button type="button" class="btn btn-info pull-right">
-        <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart (nth)
-      </button>
+      <a href="/main/carts">
+        <button type="button" class="btn btn-info pull-right">
+          <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart (nth)
+        </button>
+      </a>
     </div>
 
  <!-- END OF HEADER // START OF LEFT SIDE MENU
@@ -144,8 +148,7 @@
       <ul><p>Categories</p>
 <?php   foreach($categories as $category)
         { ?>
-        <li><a href="/main/homepage/<?=$category['category']?>"><?=$category['category']?></a></li>
-        <!--<li><a href="/view/<?=$category['category']?>" class='merch_link'><?=$category['category']?></a></li>-->
+        <li><a href="/view/<?=$category['category']?>" class='merch_link'><?=$category['category']?></a></li>
 <?php   }; ?>
         <li><a href="/">Show All</a></li>
       </ul>
@@ -201,7 +204,7 @@
   { ?>   <a href="view/merch/<?=$result['id']?>" class="<?=$result['category']?>">
           <div class='merch col-md-3'>
             <p><?=$result['name']?></p>
-            <img src="/assets/<?=$result['image']?>" alt="..." class="img-thumbnail">
+            <img src="/assets/images/<?=$result['image']?>" alt="..." class="img-thumbnail">
             <p><?=$result['price']?></p>
           </div>
         </a>
@@ -252,8 +255,7 @@
   <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/assets/js/script.js"></script>
   <script type="text/javascript" src="/assets/js/homepage_script.js"></script>
-  <script type="text/javascript" src="/assets/js/merchpage_script.js"></script>
-
+  
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>

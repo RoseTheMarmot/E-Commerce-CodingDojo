@@ -8,13 +8,17 @@
 }
 div#header {
 	background-color: black;
-	height: 40px;
 	padding-top: 5px;
 	padding-left: 15px;
+	overflow: hidden;
+}
+#header button {
+	margin-top: 22px;
+	margin-right: 20px;
 }
 #title {
-	font-size: 20px;
 	color: white;
+	display: inline-block;
 }
 #shop-cart {
 	margin-left: 400px;

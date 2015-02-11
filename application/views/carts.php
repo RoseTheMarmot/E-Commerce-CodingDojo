@@ -34,15 +34,20 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
+      <div class="one-half column">
 
         <div id="header">
-          <table>
-            <tr> 
-              <td id="title">Dojo eCommerce</td>
-              <td><a href="#">Shopping Cart (<?= $this->session->userdata('cart_qty')?>) </a>
-            </td>
-          </table>
+              <h1 id="title">Dojo eCommerce</h1>
+              <a href="/main/carts">
+                <button type="button" class="btn btn-info pull-right">
+                  <?php 
+                  $cart_qty = "";
+                  if($this->session->userdata('cart_qty')){
+                    $cart_qty = "(".$this->session->userdata('cart_qty').")";
+                  }?>
+                  <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <?=$cart_qty?>
+                </button>
+              </a>
         </div>
 
         <table class="table table-bordered">
