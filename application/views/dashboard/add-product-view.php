@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md-12">
         <h3>Add Product</h3>
-        <form method="post" action="/dashboard/add_product_process">
+        <form method="post" action="/dashboard/add_product_process" enctype="multipart/form-data">
           
           <div class="row">
             <div class="col-md-5">
@@ -50,7 +50,8 @@
                <label>Images</label>
             </div>
             <div class="col-md-7">
-              <button class="btn btn-default">Upload</button>
+              <!--<button class="btn btn-default">Upload</button>-->
+              <input type="file" name="image">
             </div>
           </div>
         </form>

@@ -1,0 +1,48 @@
+*{
+    padding: 0px;
+    margin: 0px;
+  }
+  #body{
+  	margin: 0 auto;
+  }
+
+  div#shopping_cart{
+  	margin:0 auto;
+  	margin-top: 15px;
+  	margin-left: 10%;
+  }
+  div#order_summary{
+  	margin: 0 auto;
+  	margin-top: 15px;
+  	margin-left: 10%;
+  }
+  	#order_summary button{
+  		display: inline-block;
+  	}
+  #shipping, #billing{
+  	display: inline-block;
+  	vertical-align: top;
+  	margin-top: 20px;
+  	margin-left: 15%;
+  	padding-left: 20px;
+  	padding-right: 20px;
+  	padding-bottom: 20px;
+  	border: 1px solid black;
+  	border-radius: 10px;
+  }
+	#shipping input{
+  		display: block;
+  }
+
+  #billing input{
+  	display: block;
+  }
+  	input#billing_same, label#billing_text{
+  		display: inline;
+  	}
+  	label#billing_text{
+  		margin-left: 15px;
+  	}
+	#button{
+		margin-top: 10px;
+	}
