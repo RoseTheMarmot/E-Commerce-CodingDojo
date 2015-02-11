@@ -6,8 +6,8 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
   <title>Dojo eCommerce</title>
-<!--   <meta name="description" content="">
-  <meta name="author" content=""> -->
+  <meta name="description" content="A great e-commerce website">
+  <meta name="author" content="">
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -27,9 +27,6 @@
     padding: 0px;
     margin: 0px;
   }
-
-
-
   #header{
     background-color: black;
     color: white; 
@@ -41,9 +38,6 @@
     #header button{
       margin-top: 22px;
     }
-
-
-
   #menu{
     display: inline;
     margin-top: 15px;
@@ -69,43 +63,36 @@
     #menu a{
       font-style: italic;
     }
-
-
-
-#body{
-  border: 1px solid black;
-  border-radius: 5px;
-  margin-top: 15px;
-  margin-left: 15px;
-  display: inline-block;
-  margin-bottom: 50px;
-}
-  #body h1, #body nav{
-  display: inline-block;
-  }
-  div.dropdown{
+  #body{
+    border: 1px solid black;
+    border-radius: 5px;
     margin-top: 15px;
+    margin-left: 15px;
+    display: inline-block;
+    margin-bottom: 50px;
   }
-
-
-
-
-#content{
-  display:inline-block;
-  margin-top: 70px;
-}
-  #content p{
-    text-align: center;
+    #body h1, #body nav{
+    display: inline-block;
+    }
+    div.dropdown{
+      margin-top: 15px;
+    }
+  #content{
+    display:inline-block;
+    margin-top: 70px;
   }
-  #content img{
-    margin: 5px;
+    #content p{
+      text-align: center;
+    }
+    #content img{
+      margin: 5px;
+    }
+  #footer nav{
+    margin-left: 30%;
   }
-
-
-#footer nav{
-  margin-left: 30%;
-}
-
+  #footer nav{
+    margin-left: 30%;
+  }
   </style>
 
   <!-- Favicon
@@ -157,7 +144,8 @@
       <ul><p>Categories</p>
 <?php   foreach($categories as $category)
         { ?>
-        <li><a href="/view/<?=$category['category']?>" class='merch_link'><?=$category['category']?></a></li>
+        <li><a href="/main/homepage/<?=$category['category']?>"><?=$category['category']?></a></li>
+        <!--<li><a href="/view/<?=$category['category']?>" class='merch_link'><?=$category['category']?></a></li>-->
 <?php   }; ?>
         <li><a href="/">Show All</a></li>
       </ul>
@@ -167,7 +155,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
     <div id='body' class='col-md-7'>
-      <h1>All Products (page nth)</h1>   <!-- NEED TO DYNAMICALLY CHANGE PAGE COUNT -->
+      <h1><?=$category['category']?> (page nth)</h1>   <!-- NEED TO DYNAMICALLY CHANGE PAGE COUNT -->
       <nav class='pull-right'>
         <ul class="pagination">
             <li>
@@ -262,6 +250,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" src="/assets/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/assets/js/script.js"></script>
   <script type="text/javascript" src="/assets/js/homepage_script.js"></script>
   <script type="text/javascript" src="/assets/js/merchpage_script.js"></script>
 

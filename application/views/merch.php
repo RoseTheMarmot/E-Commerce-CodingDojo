@@ -27,7 +27,6 @@
     padding: 0px;
     margin: 0px;
   }
-
   #container{
     margin-bottom: 50px;
   }
@@ -45,45 +44,32 @@
     #header button{
       margin-top: 22px;
     }
-div.row{
-  width: 1075px;
-  margin: 0 auto;
-}
-
-#preview{
-  margin-left: 30px;
-}
-  #preview h1{
-    text-align: center;
+  div.row{
+    width: 1075px;
+    margin: 0 auto;
   }
-  #preview button{
-    margin-top: 5px;
+  #preview{
+    margin-left: 30px;
   }
-  #preview .merch{
-    width: 24%;
-    display:inline-block;
+    #preview h1{
+      text-align: center;
+    }
+    #preview button{
+      margin-top: 5px;
+    }
+    #preview .merch{
+      width: 24%;
+      display:inline-block;
+    }
+  #description h4{
+    margin-top: 45px;
   }
-
-
-
-
-#description h4{
-  margin-top: 45px;
-}
-
-
-#controls button{
-  margin-right: 10px;
-}
-
-
-
-
-
-  #footer p{
-    text-align: center;
+  #controls button{
+    margin-right: 10px;
   }
-
+    #footer p{
+      text-align: center;
+    }
   </style>
 
   <!-- Favicon
