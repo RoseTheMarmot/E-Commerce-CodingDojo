@@ -57,21 +57,20 @@ class Main extends CI_Controller {
 		$this->load->model('cart_model');
 
 		$customer_details = array(
-							"address" => $address,
-							"address_2" => $address_2,
-							"city" => $city,
-							"state" => $state,
-							"zipcode" => $zipcode, 
-							"first_name" => $first_name,
-							"last_name" => $last_name
-							
+					"address" => $address,
+					"address_2" => $address_2,
+					"city" => $city,
+					"state" => $state,
+					"zipcode" => $zipcode, 
+					"first_name" => $first_name,
+					"last_name" => $last_name
 		);
 		
 		// this line below adds my customer data of input into the db
 		// $add_customer = $this->cart_model->add_customer($customer_details);
 		$query = mysql_query("SELECT first_name AND last_name 
-							  FROM customers 
-							  WHERE first_name = '$first_name' AND last_name = '$last_name'");
+				      FROM customers 
+				      WHERE first_name = '$first_name' AND last_name = '$last_name'");
 		if(mysql_num_rows($query) != 0)
 		{
 			echo "Name already exists";
