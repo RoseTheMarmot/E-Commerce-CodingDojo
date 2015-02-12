@@ -80,6 +80,7 @@ class Main extends CI_Controller {
 		{
 			$add_customer = $this->cart_model->add_customer($customer_details);
 		}
+
 	}
 
 	public function home()
@@ -115,6 +116,15 @@ class Main extends CI_Controller {
 	
 	public function admin(){
 		$this->load->view('admin-login-view');
+<<<<<<< HEAD
+	}
+
+	// successful order page
+	public function success()
+	{
+		$this->load->view("success");
+=======
+>>>>>>> 0864677f61543467355a1f043ba591013e5197ad
 	}
 }
 
