@@ -9,6 +9,9 @@ $route['pay'] = "main/pay";
 $route['view/merch/(:num)'] = "main/merch_page/$1";
 $route['views/homepage'] = "main/select_category";
 
+//succesful order
+$route['success'] = "main/success";
+
 
 //end of routes.php
 

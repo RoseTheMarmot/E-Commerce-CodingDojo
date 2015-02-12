@@ -66,6 +66,7 @@ class Main extends CI_Controller {
 		{
 			$add_customer = $this->cart_model->add_customer($customer_details);
 		}
+
 	}
 
 	public function home()
@@ -76,6 +77,12 @@ class Main extends CI_Controller {
 	public function merch()
 	{
 		$this->load->view("merch");
+	}
+
+	// successful order page
+	public function success()
+	{
+		$this->load->view("success");
 	}
 }
 

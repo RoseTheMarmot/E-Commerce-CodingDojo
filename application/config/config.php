@@ -62,4 +62,12 @@ $config['rewrite_short_tags'] = FALSE;
 
 $config['proxy_ips'] = '';
 
+
+
+
+
+
+
+
+
 // end of config.php
