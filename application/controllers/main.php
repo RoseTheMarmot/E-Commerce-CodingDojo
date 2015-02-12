@@ -95,7 +95,8 @@ class Main extends CI_Controller {
 	public function merch_page($id)
 	{
 		$results = $this->product_model->get_one_merch($id);
-		$items = $this->product_model->show_all_merch();
+		//$items = $this->product_model->show_all_merch();
+		$items = $this->category_model->sort_merch($results['category']);
 		$this->load->view('merch', array("results" => $results, "items" => $items));
 	}
 

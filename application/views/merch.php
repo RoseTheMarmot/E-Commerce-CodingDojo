@@ -84,39 +84,40 @@
     </div>      <!-- END OF THE TOP HALF OF THE PAGE FOR PREVIEW AND DESCRIPTION -->
 
 <!-- START OF THE BOTTOM HALF WITH THE QUANTITY / BUY / AND SIMILAR ITEMS -->
-
-  <div id='controls' class='col-md-12'>
-    
-    <button type='button' class='btn btn-info pull-right'>Buy</button>
-    <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle pull-right" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-        Quantity
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
-<?php if( $results['inventory'] > 5)
-        {
-        for($i = 1; $i < 6; $i++)
-          { ?>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><?=$i?></a></li>
-<?php     }
-        }
-        elseif( $results['inventory'] > 0)
-        {
-          for($i = 1; $i <= $results['inventory']; $i++)
+  <div class="row">
+    <div id='controls' class='col-md-12'>
+      
+      <button type='button' class='btn btn-info pull-right'>Buy</button>
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle pull-right" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+          Quantity
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+  <?php if( $results['inventory'] > 5)
+          {
+          for($i = 1; $i < 6; $i++)
             { ?>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><?=$i?></a></li>
-<?php       }
-        }
-        else
-        { ?>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sold Out</a></li>
-<?php   } ?>
-      </ul>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><?=$i?></a></li>
+  <?php     }
+          }
+          elseif( $results['inventory'] > 0)
+          {
+            for($i = 1; $i <= $results['inventory']; $i++)
+              { ?>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><?=$i?></a></li>
+  <?php       }
+          }
+          else
+          { ?>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sold Out</a></li>
+  <?php   } ?>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <div id='footer'>
+  <div class="row" id='footer'>
     <h4>Similar Items:</h4>
 <?php foreach($items as $item)
       { ?>

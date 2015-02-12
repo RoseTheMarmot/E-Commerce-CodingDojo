@@ -183,6 +183,7 @@
   <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/assets/js/script.js"></script>
   <script type="text/javascript" src="/assets/js/homepage_script.js"></script>
+  <script type="text/javascript" src="/assets/js/merch_script.js"></script>
   
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
