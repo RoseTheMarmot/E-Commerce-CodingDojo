@@ -132,6 +132,18 @@ class Main extends CI_Controller {
 	}
 
 	/* ------------------------------
+	 * Echos merch all merch as a JSON object
+	 */
+	public function get_all_merch()
+	{
+		$this->load->model('product_model');
+		$values = $this->product_model->show_all_merch();
+		$output['values'] = $values;
+		echo json_encode($output);
+	}
+
+
+	/* ------------------------------
 	 * Echos merch matching the given category name
 	 * as a JSON object
 	 */
