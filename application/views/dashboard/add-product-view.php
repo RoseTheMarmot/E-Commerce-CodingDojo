@@ -30,8 +30,13 @@
                <label>Categories</label>
             </div>
             <div class="col-md-7">
-              <select class="form-control" name="categories">
-                <option>option</option>
+              <select class="form-control" name="category">
+                <?php if(!empty($categories)){
+                  foreach($categories as $category){?>
+                    <option><?=$category['category']?></option>
+                    <?php
+                  }
+                }?>
               </select>
             </div>
           </div>
@@ -47,11 +52,20 @@
 
           <div class="row">
             <div class="col-md-5">
+               <label>Price</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" name="price">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5">
                <label>Images</label>
             </div>
             <div class="col-md-7">
               <!--<button class="btn btn-default">Upload</button>-->
-              <input type="file" name="image">
+              <input type="file" name="image" id="upload-image">
             </div>
           </div>
         </form>

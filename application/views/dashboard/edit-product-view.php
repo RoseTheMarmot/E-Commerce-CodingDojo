@@ -1,18 +1,4 @@
 
-  <?php 
-  if(empty($product['id'])){
-    $product['id'] = "";
-  }
-  if(empty($product['name'])){
-    $product['name'] = "";
-  }
-  if(empty($product['description'])){
-    $product['description'] = "";
-  }
-  if(empty($product['picture'])){
-    $product['picture'] = "";
-  }
-  ?>
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container lightbox-item">
@@ -44,8 +30,17 @@
                <label>Categories</label>
             </div>
             <div class="col-md-7">
-              <select class="form-control" name="categories">
-                <option>option</option>
+              <select class="form-control" name="category">
+                <?php foreach($categories as $category){
+                  if(strcmp($category['category'], $product['category'])===0){?>
+                    <option selected="selected"><?=$category['category']?></option>
+                    <?php
+                  }else{?>
+                    <option><?=$category['category']?></option>
+                    <?php
+                  }
+                }?>
+                
               </select>
             </div>
           </div>
@@ -61,12 +56,22 @@
 
           <div class="row">
             <div class="col-md-5">
+               <label>Price</label>
+            </div>
+            <div class="col-md-7">
+              <input type="text" name="price" value="<?=$product['price']?>">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5">
                <label>Images</label>
             </div>
             <div class="col-md-7">
               <!--<button class="btn btn-default">Upload</button>-->
               <input type="file" name="image">
-              <img src="/assets/images/<?=$product['picture']?>" alt="<?=$product['picture']?>">
+              <input type="hidden" name="image-title" value="<?=$product['image']?>">
+              <img src="/assets/images/<?=$product['image']?>" alt="<?=$product['image']?>">
             </div>
           </div>
         </form>

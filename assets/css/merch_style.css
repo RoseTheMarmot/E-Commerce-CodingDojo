@@ -1,0 +1,33 @@
+
+  div.row{
+    width: 1075px;
+    margin: 0 auto;
+  }
+  #preview{
+    margin-left: 30px;
+  }
+    #preview h1{
+      text-align: center;
+    }
+    #preview button{
+      margin-top: 5px;
+    }
+    #preview .merch{
+      width: 24%;
+      display:inline-block;
+    }
+  #description h4{
+    margin-top: 45px;
+  }
+  #controls button{
+    margin-right: 10px;
+  }
+  #footer{
+    margin-top: 30px;
+  }
+    #footer p{
+      text-align: center;
+    }
+    #footer div {
+      height: 220px;
+    }

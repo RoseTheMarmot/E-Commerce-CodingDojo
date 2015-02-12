@@ -4,8 +4,12 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		//redirect to admin login
-		redirect('/main/admin');
+		if($this->session->userdata('is_admin') === true){
+			redirect('/dashboard/products');
+		}else{
+			//redirect to admin login
+			redirect('/main/admin');
+		}	
 	}
 
 	/* ---------------------------
@@ -191,22 +195,25 @@ class Dashboard extends CI_Controller {
 		if($this->session->userdata('is_admin') === true){ //check if admin
 			$this->load->model('dashboard_model');
 			$product = $this->dashboard_model->get_product_by_id($id);
-			$this->load->view('dashboard/edit-product-view', array('product' => $product));
+			$categories = $this->dashboard_model->get_product_categories();
+			$this->load->view('dashboard/edit-product-view', array('product' => $product, 'categories' => $categories));
 		}else{
 			redirect('/main/admin');
 		}
 	}
 
+	/* ---------------------------
+	 *  Process product edit
+	 */
 	public function edit_product_process($id){
 		if($this->session->userdata('is_admin') === true){ //check if admin
-			if($this->input->post()){
-				$name = $this->input->post('name');
-				$description = $this->input->post('description');
-
+			$info = $this->process_product($id);
+			if($info){
 				$this->load->model('dashboard_model');
-				$this->dashboard_model->update_product($id, $name, $description);
+				$this->dashboard_model->update_product($info['id'], $info['name'], $info['description'], $info['category'], $info['price'], $info['image']);
 			}
-			echo "{}";
+			//echo "{}";
+			redirect('/dashboard/products');
 		}else{
 			redirect('/main/admin');
 		}		
@@ -217,7 +224,9 @@ class Dashboard extends CI_Controller {
 	 */
 	public function add_product(){
 		if($this->session->userdata('is_admin') === true){ //check if admin
-			$this->load->view('dashboard/add-product-view');
+			$this->load->model('dashboard_model');
+			$categories = $this->dashboard_model->get_product_categories();
+			$this->load->view('dashboard/add-product-view', array('categories' => $categories));
 		}else{
 			redirect('/main/admin');
 		}
@@ -229,14 +238,13 @@ class Dashboard extends CI_Controller {
 	 */
 	public function add_product_process(){
 		if($this->session->userdata('is_admin') === true){ //check if admin
-			if($this->input->post()){
-				$name = $this->input->post('name');
-				$description = $this->input->post('description');
-
+			$info = $this->process_product(0);
+			if($info){
 				$this->load->model('dashboard_model');
-				$this->dashboard_model->add_product($name, $description);
+				$this->dashboard_model->add_product($info['name'], $info['description'], $info['category'], $info['price'], $info['image']);
 			}
-			echo "{}";
+			//echo "{}";
+			redirect('/dashboard/products');
 		}else{
 			redirect('/main/admin');
 		}	
@@ -253,6 +261,10 @@ class Dashboard extends CI_Controller {
 		}else{
 			redirect('/main/admin');
 		}
+	}
+
+	public function delete_product_processs(){
+
 	}
 
 	/* ---------------------------
@@ -274,8 +286,50 @@ class Dashboard extends CI_Controller {
 	public function logoff(){
 		$userdata = $this->session->all_userdata();
 		$this->session->unset_userdata($userdata);
-		redirect("/main/admin");
+		redirect("/");
 	}
+
+	/* ---------------------------
+	 *  Helper functions
+	 */
+
+	private function process_product($id){
+		$array = false;
+		if($this->input->post()){
+			$array = array(
+				'id' => $id, 
+				'name' => $this->input->post('name'), 
+				'description' => $this->input->post('description'), 
+				'category' => $this->input->post('category'), 
+				'price' => $this->input->post('price'),
+				'image' => $this->process_image()
+				);
+			if($this->input->post('new-category') && strlen($this->input->post('new-category')) > 0){
+				echo "<br/>in if<br/>";
+				$array['category'] = $this->input->post('new-category');
+			}
+			if($this->input->post('image-title')){
+				$array['image'] = $this->input->post('image-title');
+			}
+		}
+		return $array;
+	}
+
+	private function process_image(){
+		$image = null;
+		if(!empty($_FILES['image']) 
+				&& $_FILES['image']['size'] <= 5*1024*1024
+				&& ( strcmp($_FILES['image']['type'], "image/jpg") === 0
+					|| strcmp($_FILES['image']['type'], "image/png") === 0 
+					|| strcmp($_FILES['image']['type'], "image/jpeg") === 0
+					|| strcmp($_FILES['image']['type'], "image/gif") === 0 )
+			){
+			$image = $_FILES['image']['name'];
+			move_uploaded_file($_FILES['image']['tmp_name'], './assets/images/'.$_FILES['image']['name']);	
+		}
+		return $image;
+	}
+
 }
 
 //end of main controller

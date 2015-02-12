@@ -7,7 +7,7 @@
 	var ordersTable		= $(	'#orders-table'			);
 
 	//results per page
-	var perPage = 10;
+	var perPage = 5;
 
 	//load table
 	get_orders(0);
@@ -200,13 +200,16 @@
 	 * Returns and html row for the table
 	 */
 	 function row(id, first_name, last_name, created_at, address, address2, city, state, zipcode, total, status){
+	 	if(total == null){
+	 		total = '0.00';
+	 	}
 	 	$.get(
 	 		'/dashboard/order_status_select/'+status+'/'+id, 
 	 		function(data){
 	 			$('#row-'+id+' .status').append(data);
 	 		}, 
 	 		'html');
-	 	return '<tr id="row-'+id+'"><td><a href="/orders/show/'+id+'">'+id+'</a></td><td>'+first_name+' '+last_name+'</td><td>'+created_at+'</td><td>'+address+' '+address2+' '+city+', '+state+' '+zipcode+'</td><td>'+total+'</td><td class="status"></td></tr>';
+	 	return '<tr id="row-'+id+'"><td><a href="/orders/show/'+id+'">'+id+'</a></td><td>'+first_name+' '+last_name+'</td><td>'+created_at+'</td><td>'+address+' '+address2+' '+city+', '+state+' '+zipcode+'</td><td>$'+total+'</td><td class="status"></td></tr>';
 	 }
 
 })(jQuery);
