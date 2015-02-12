@@ -2,15 +2,21 @@
 
 $route['default_controller'] = "main";
 $route['404_override'] = '';
+
+$route['view/merch/(:num)'] = "main/merch_page/$1";
+$route['view/(:any)'] = "main/homepage/$1";
+$route['views/homepage'] = "main/select_category";
+
+<<<<<<< HEAD
+//succesful order
+$route['success'] = "main/success";
+=======
 $route['carts'] = "main/carts";
 $route['pay'] = "main/pay";
 
-//Alex
-$route['view/merch/(:num)'] = "main/merch_page/$1";
-$route['views/homepage'] = "main/select_category";
+$route['orders/show/(:num)'] = "dashboard/single_order/$1";
 
-//succesful order
-$route['success'] = "main/success";
+>>>>>>> 0864677f61543467355a1f043ba591013e5197ad
 
 
 //end of routes.php

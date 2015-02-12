@@ -1,0 +1,171 @@
+*{
+	/*outline: 1px dotted #00ffff;*/
+}
+.row{
+	margin: 20px 0px;
+}
+.centered{
+	text-align: center;
+}
+.navbar-default{
+	background-color: #9C1919;
+	background-image: none;
+	color: #fff;
+	border-radius: 0px;
+	margin: 0px;
+	border: none;
+	box-shadow: 0px 2px 1px #888;
+}
+.navbar-default .navbar-brand{
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+.navbar-default .navbar-brand:hover{
+	color: #ddd;
+	text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+.navbar-default .navbar-nav>li>a {
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+.navbar-default .navbar-nav>li>a:hover {
+	color: #ddd;
+	text-decoration: underline;
+	text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+.navbar-default .navbar-nav .active {
+	text-decoration: underline;
+}
+.navbar-toggle{
+	background-color: #ddd;
+}
+form .search-with-icon{
+	position: relative;
+	z-index: 1;
+	padding-left: 25px;
+	width: 100px;
+	border-radius: 20px;
+}
+form .icon-in-bar{
+	position: absolute;
+	z-index: 2;
+	left: 23px;
+	top: 21px;
+	color: #aaa;
+}
+@media all and (min-width: 768px){
+/* icon bar position for large screens */
+form .icon-in-bar{
+	left: 38px;
+	top: 18px;
+}
+}
+table.bordered {
+	border-top: 1px solid #888;
+	border-bottom: 1px solid #888;
+	width: 100%;
+}
+	table.bordered td, table.bordered th {
+		border-left: 1px solid #888;
+		border-right: 1px solid #888;
+		border-bottom: none;
+		border-top: none;
+		padding: 5px 10px;
+	}
+	table.bordered th{
+		background-color: #ddd;
+	}
+	table.bordered tr:nth-child(odd){
+		background-color: #eee;
+	}
+	table.bordered img {
+		max-width: 150px;
+	}
+	table.bordered .delete-product{
+		float: right;
+	}
+table.outlined{
+	width: 100%;
+	border: 1px solid #888;
+}
+	table.outlined th, table.outlined td {
+		padding: 5px 10px;
+	}
+div.outlined{
+	width: 100%;
+	border: 1px solid #888;
+	padding: 10px;	
+}
+#orders-filter-form{
+	margin-top: 10px;
+}
+#add-product-button{
+	margin-top: 10px;
+	float: right;
+}
+@media all and (min-width: 1091px){
+	#order-details-table{
+		margin-top: -20px;
+	}
+}
+#address-details-div table td{
+	padding: 0px 10px;
+}
+#lightbox{
+	display: none;
+	position:fixed; /* keeps the lightbox window in the current viewport */
+    top:0; 
+    left:0; 
+    width:100%; 
+    height:100%; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    text-align:center;
+    z-index: 999;
+}
+#lightbox .close{
+    text-align:right; 
+    color:#fff; 
+    margin-right:20px; 
+    font-size:12px; 
+}
+#lightbox #content {
+    box-shadow:0 0 25px #111;
+    -webkit-box-shadow:0 0 25px #111;
+    -moz-box-shadow:0 0 25px #111;
+    max-width:940px;
+    display: inline-block;
+    background-color: #fff;
+    color: #000;
+    padding: 20px;
+    margin-top: 40px;
+}
+.lightbox-item {
+    width:600px; 
+    margin:0 auto; /*centers the div horizontally in all browsers (except IE)*/
+    background:#fff; 
+    text-align:left; /*resets text alignment from body tag */
+    border:1px solid #ccc;
+    border-top:none; 
+    padding:25px; 
+    /*Let's add some CSS3 styles, these will degrade gracefully in older browser and IE*/
+    border-radius:0 0 5px 5px;
+    -moz-border-radius:0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px; 
+    box-shadow:0 0 5px #ccc;
+    -moz-box-shadow:0 0 5px #ccc;
+    -webkit-box-shadow:0 0 5px #ccc;
+    overflow: scroll;
+}
+.lightbox-item label {
+	float: right;
+}
+.lightbox-item input, .lightbox-item textarea {
+	width: 100%;
+}
+.lightbox-item .buttons {
+	margin-top: 50px;
+}
+.lightbox-item img {
+	max-width: 50px;
+}
+
