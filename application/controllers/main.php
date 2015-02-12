@@ -16,11 +16,21 @@ class Main extends CI_Controller {
 		$this->load->view('homepage', array("results" => $results, 'categories' => $category));
 	}
 	
+	/* ================================================
+	 * CHECKING OUT
+	 * ===============================================*/
+
+	/* ---------------------
+	 * Cart page
+	 */
 	public function carts()
 	{
 		$this->load->view("carts");
 	}
 
+	/* ---------------------
+	 * Cart page processing
+	 */
 	public function pay()
 	{
 		// CI Form Validation
@@ -83,16 +93,37 @@ class Main extends CI_Controller {
 
 	}
 
+	/* ================================================
+	 * MAIN PRODUCT PAGES
+	 * ===============================================*/
+
+	/* ------------------------------
+	 * Landing page with all products
+	 */
 	public function home()
 	{
 		$this->load->view("homepage");
 	}
 
+	/* ------------------------------
+	 * First draft of single page function????
+	 */
+	public function homepage($category)
+	{
+		$items = $this->category_model->sort_merch($category);
+	}
+
+	/* ------------------------------
+	 * Don't really know what this is for ether.
+	 */
 	public function merch()
 	{
 		$this->load->view("merch");		
 	}
 
+	/* ------------------------------
+	 * Single merch page
+	 */
 	public function merch_page($id)
 	{
 		$results = $this->product_model->get_one_merch($id);
@@ -101,11 +132,10 @@ class Main extends CI_Controller {
 		$this->load->view('merch', array("results" => $results, "items" => $items));
 	}
 
-	public function homepage($category)
-	{
-		$items = $this->category_model->sort_merch($category);
-	}
-
+	/* ------------------------------
+	 * Echos merch matching the given category name
+	 * as a JSON object
+	 */
 	public function get_merch($name)
 	{
 		$this->load->model('category_model');
@@ -113,18 +143,23 @@ class Main extends CI_Controller {
 		$output['values'] = $values;
 		echo json_encode($output);
 	}
+
+	/* ------------------------------
+	 * Echos merch matching the filter
+	 * as a JSON object
+	 */
+	public function get_merch_filter($filter){
+		$this->load->model('product_model');
+		$values = $this->product_model->get_merch_by_filter($filter);
+		$output['values'] = $values;
+		echo json_encode($output);
+	}
 	
+	/* ------------------------------
+	 * Loads admin login
+	 */
 	public function admin(){
 		$this->load->view('admin-login-view');
-<<<<<<< HEAD
-	}
-
-	// successful order page
-	public function success()
-	{
-		$this->load->view("success");
-=======
->>>>>>> 0864677f61543467355a1f043ba591013e5197ad
 	}
 }
 
