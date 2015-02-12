@@ -86,7 +86,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
     <div id='body' class='col-md-7'>
-      <h1>All Products (page nth)</h1>   <!-- NEED TO DYNAMICALLY CHANGE PAGE COUNT -->
+      <h1>All Products</h1>   <!-- NEED TO DYNAMICALLY CHANGE PAGE COUNT -->
       <nav class='pull-right'>
         <ul class="pagination">
             <li>
@@ -128,15 +128,15 @@
 
 
 <?php
-  foreach($results as $result)
-  { ?>   <a href="view/merch/<?=$result['id']?>" class="<?=$result['category']?>">
+  //foreach($results as $result)
+  //{ ?>   <!--<a href="view/merch/<?=$result['id']?>" class="<?=$result['category']?>">
           <div class='merch col-md-3 merch-div'>
             <p><?=$result['name']?></p>
             <img src="/assets/images/<?=$result['image']?>" alt="..." class="img-thumbnail">
             <p>$<?=$result['price']?></p>
           </div>
-        </a>
-<?php  }
+        </a>-->
+<?php  //}
 ?>  
 
 
@@ -147,7 +147,7 @@
       <div id='footer'>
         <nav>
           <ul class="pagination pagination-sm">
-            <li class="privious">
+            <li class="previous">
               <span aria-label="Previous" aria-hidden="true">&laquo;</span>
             </li>
  <!-- Primary Page Layout
