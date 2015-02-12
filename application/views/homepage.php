@@ -58,14 +58,14 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
       <div class='row col-md-9'>
-        <input type="text" class="form-control" placeholder="Search">
+        <input id="merch-search" type="text" class="form-control" placeholder="Search">
       </div>
 
    <!-- SEARCH BUTTON
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
       <div class='row col-md-4'>
-        <button type='button' class='btn btn-info'>
+        <button id="merch-search-button" type='button' class='btn btn-info'>
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
         </button>
       </div>
