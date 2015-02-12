@@ -207,6 +207,7 @@ class Dashboard_model extends CI_Model {
 			    products.id LIKE '%".$filter."%'
 			        OR products.name LIKE '%".$filter."%'
 			        OR products.inventory LIKE '%".$filter."%'
+			        OR products.category LIKE '%".$filter."%'
 			GROUP BY products.id
 			ORDER BY products.id ASC";
 		return $this->db->query($query)->result_array();

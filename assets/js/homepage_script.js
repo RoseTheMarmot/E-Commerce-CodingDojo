@@ -1,7 +1,7 @@
 (function($){
-	
+
 	//number of merch divs per page
-	var perPage = 4;
+	var perPage = 8;
 	
 	//laod page
 	var jsonData = "{}";
@@ -49,7 +49,7 @@
 		var i = 0; 
 		$('#content').empty();
 		while(i+start < jsonData.values.length && i < perPage){
-			$('#content').append('<a href="view/merch/'+jsonData.values[start+i].id+'" class=" '+jsonData.values[start+i].category+' "><div class="merch col-md-3"><p>'+jsonData.values[start+i].name+'</p><img src="/assets/images/'+jsonData.values[start+i].image+'" alt="..." class="img-thumbnail"><p>$'+jsonData.values[start+i].price+'</p></div></a>');
+			$('#content').append('<a href="view/merch/'+jsonData.values[start+i].id+'" class=" '+jsonData.values[start+i].category+' "><div class="merch merch-div col-md-3"><p>'+jsonData.values[start+i].name+'</p><img src="/assets/images/'+jsonData.values[start+i].image+'" alt="..." class="img-thumbnail"><p>$'+jsonData.values[start+i].price+'</p></div></a>');
 			i++;
 		}
 	}
